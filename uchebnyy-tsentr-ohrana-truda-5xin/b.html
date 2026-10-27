@@ -75,6 +75,20 @@
   .legal__item { display: flex; align-items: center; gap: 12px; }
   .legal__item svg { color: var(--accent); flex: none; }
 </style>
+<!-- first-screen:fit -->
+<style>html.fs-fit { width: auto !important; overflow-x: hidden !important; }</style>
+<script>(function () {
+  var d = document.documentElement;
+  function fit() {
+    if (!document.body) return;
+    var w = d.clientWidth;
+    d.classList.toggle('fs-fit', w !== 1920);
+    document.body.style.zoom = w === 1920 ? '' : String(w / 1920);
+  }
+  document.addEventListener('DOMContentLoaded', fit);
+  window.addEventListener('resize', fit);
+})();</script>
+<!-- /first-screen:fit -->
 </head>
 <body>
   <header class="header">
