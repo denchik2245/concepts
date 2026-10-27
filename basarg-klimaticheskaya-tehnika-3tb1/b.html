@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Basarg — первый экран, вариант B</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@300;400;500;600&display=swap&subset=cyrillic" rel="stylesheet">
+<style>
+  :root {
+    --accent: #3d6b9a;
+    --accent-hover: #335b84;
+    --ice: #dfe8f1;
+    --bg: #efebe5;
+    --surface: #ffffff;
+    --dark: #15171a;
+    --text: #15171a;
+    --text-2: #62666d;
+    --border: #dcd6cd;
+    --font: "Onest", sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html, body { width: 1920px; margin: 0; overflow-x: hidden; }
+  body { background: var(--bg); color: var(--text); font: 400 16px/24px var(--font); -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+  h1, p { margin: 0; }
+  .container { position: relative; width: 1200px; margin: 0 auto; }
+  svg { width: 24px; height: 24px; flex: none; }
+
+  .header { height: 104px; border-bottom: 1px solid var(--border); }
+  .header .container { display: flex; align-items: center; height: 100%; gap: 48px; }
+  .logo { display: flex; flex-direction: column; }
+  .logo b { font-size: 28px; line-height: 32px; font-weight: 500; letter-spacing: .12em; }
+  .logo span { font-size: 12px; line-height: 16px; letter-spacing: .32em; color: var(--text-2); }
+  .menu { display: flex; white-space: nowrap; gap: 32px; margin-left: 24px; }
+  .header__right { display: flex; align-items: center; gap: 32px; margin-left: auto; }
+  .phone { white-space: nowrap; font-size: 18px; line-height: 24px; font-weight: 500; }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 16px; border-radius: 12px; font: 500 16px/24px var(--font); white-space: nowrap; }
+  .btn--outline { height: 48px; padding: 0 24px; border: 1px solid var(--text); }
+  .btn--l { height: 64px; padding: 0 32px; font-size: 18px; }
+  .btn--primary { background: var(--accent); color: #fff; }
+
+  .hero { position: relative; height: 976px; }
+  .hero__photo { position: absolute; left: 960px; top: 0; width: 960px; height: 976px; background: url(assets/split-wall.jpg) 30% center / cover; }
+  .hero__photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(239,235,229,.5) 0%, rgba(239,235,229,0) 30%); }
+  .hero .container { height: 100%; }
+
+  .offer { position: absolute; left: 0; top: 136px; width: 588px; }
+  h1 { font-size: 56px; line-height: 64px; font-weight: 500; letter-spacing: -.02em; }
+  h1 em { font-style: normal; color: var(--accent); }
+  .lead { margin-top: 32px; font-size: 20px; line-height: 32px; color: var(--text-2); }
+  .checks { margin-top: 40px; display: grid; gap: 16px; }
+  .check { display: flex; gap: 16px; align-items: flex-start; font-size: 18px; line-height: 28px; }
+  .check svg { color: var(--accent); margin-top: 2px; }
+  .alt { margin-top: 48px; display: flex; align-items: center; gap: 16px; font-size: 16px; line-height: 24px; }
+  .alt a { border-bottom: 1px solid var(--text); font-weight: 500; }
+  .alt span { color: var(--text-2); }
+
+  .calc { position: absolute; left: 690px; top: 104px; width: 510px; padding: 40px; border-radius: 32px; background: var(--surface); box-shadow: 0 32px 80px rgba(40,34,26,.18); }
+  .calc__title { font-size: 24px; line-height: 32px; font-weight: 500; }
+  .calc__sub { margin-top: 8px; font-size: 14px; line-height: 20px; color: var(--text-2); }
+  .tabs { display: flex; gap: 8px; margin-top: 24px; padding: 4px; background: var(--bg); border-radius: 12px; }
+  .tab { flex: 1; height: 40px; display: flex; align-items: center; justify-content: center; border-radius: 8px; font-size: 14px; line-height: 20px; font-weight: 500; color: var(--text-2); }
+  .tab--on { background: var(--surface); color: var(--text); box-shadow: 0 2px 8px rgba(40,34,26,.08); }
+  .field { margin-top: 24px; }
+  .field__label { display: flex; justify-content: space-between; font-size: 14px; line-height: 20px; color: var(--text-2); }
+  .field__label b { color: var(--text); font-size: 16px; line-height: 20px; font-weight: 500; }
+  .range { position: relative; margin-top: 16px; height: 4px; border-radius: 2px; background: var(--border); }
+  .range i { position: absolute; left: 0; top: 0; height: 4px; border-radius: 2px; background: var(--accent); }
+  .range s { position: absolute; top: -10px; width: 24px; height: 24px; margin-left: -12px; border-radius: 12px; background: var(--surface); border: 2px solid var(--accent); }
+  .chips { display: flex; gap: 8px; margin-top: 12px; }
+  .chip { height: 40px; padding: 0 16px; display: flex; align-items: center; border: 1px solid var(--border); border-radius: 20px; font-size: 14px; line-height: 20px; }
+  .chip--on { border-color: var(--accent); background: var(--ice); color: var(--accent-hover); font-weight: 500; }
+  .result { margin-top: 32px; padding: 24px; border-radius: 16px; background: var(--ice); display: flex; justify-content: space-between; align-items: flex-end; }
+  .result__k { font-size: 14px; line-height: 20px; color: var(--text-2); }
+  .result__v { font-size: 40px; line-height: 48px; font-weight: 500; letter-spacing: -.02em; color: var(--accent-hover); }
+  .result__model { text-align: right; font-size: 14px; line-height: 20px; color: var(--text-2); }
+  .result__model b { display: block; font-size: 24px; line-height: 32px; color: var(--text); font-weight: 500; }
+  .calc .btn--l { margin-top: 24px; width: 100%; }
+  .calc__note { margin-top: 12px; text-align: center; font-size: 14px; line-height: 20px; color: var(--text-2); }
+
+  .brands { position: absolute; left: 0; right: 0; bottom: 0; height: 104px; display: flex; align-items: center; gap: 56px; border-top: 1px solid var(--border); background: var(--bg); margin: 0 -360px; padding: 0 360px; }
+  .brands span:first-child { font-size: 14px; line-height: 20px; color: var(--text-2); width: 160px; }
+  .brand { font-size: 22px; line-height: 28px; font-weight: 600; letter-spacing: .04em; color: #8a857d; }
+</style>
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <a class="logo" href="#"><b>BASARGIN</b><span>КЛИМАТ</span></a>
+      <nav class="menu">
+        <a href="#">Каталог</a><a href="#">Подбор</a><a href="#">Монтаж</a><a href="#">Объекты</a><a href="#">Контакты</a>
+      </nav>
+      <div class="header__right">
+        <a class="phone" href="#">+7 923 223-66-44</a>
+        <a class="btn btn--outline" href="#">Заказать звонок</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero__photo"></div>
+    <div class="container">
+      <div class="offer">
+        <h1>Рассчитаем мощность и&nbsp;подберём кондиционер <em>под вашу комнату</em></h1>
+        <p class="lead">Слабый кондиционер не охладит, мощный — переплата и шум. Считаем по площади, потолкам и солнечной стороне.</p>
+        <div class="checks">
+          <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Бесплатный замер по Новосибирску и области</div>
+          <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Монтаж за 1 день, установка 2–3 часа</div>
+          <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Гарантия 3 года на технику и работу</div>
+        </div>
+        <div class="alt"><a href="#">Посмотреть объекты</a><span>квартиры, офисы и магазины</span></div>
+      </div>
+
+      <div class="calc">
+        <p class="calc__title">Подбор мощности</p>
+        <p class="calc__sub">Ответ сразу, точная смета — после замера</p>
+        <div class="tabs"><span class="tab tab--on">Кондиционер</span><span class="tab">Бризер</span></div>
+        <div class="field">
+          <div class="field__label"><span>Площадь комнаты</span><b>22 м²</b></div>
+          <div class="range"><i style="width: 36%"></i><s style="left: 36%"></s></div>
+        </div>
+        <div class="field">
+          <div class="field__label"><span>Окна выходят</span></div>
+          <div class="chips"><span class="chip">на север</span><span class="chip chip--on">на солнечную сторону</span></div>
+        </div>
+        <div class="result">
+          <div><p class="result__k">Нужная мощность</p><p class="result__v">9 kBTU</p></div>
+          <p class="result__model">RAPID RAM-09HJ<b>14 000 ₽</b></p>
+        </div>
+        <a class="btn btn--l btn--primary" href="#">Получить расчёт с монтажом</a>
+        <p class="calc__note">Пришлём 2–3 модели и цену установки</p>
+      </div>
+
+      <div class="brands">
+        <span>Работаем с брендами</span>
+        <span class="brand">Daikin</span><span class="brand">Electrolux</span><span class="brand">Ballu</span><span class="brand">Tion</span><span class="brand">Funai</span><span class="brand">Royal Clima</span>
+      </div>
+    </div>
+  </section>
+</body>
+</html>
