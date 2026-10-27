@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>VIHMO — первый экран, мобильная версия</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Onest:wght@400;500;600&display=swap&subset=cyrillic" rel="stylesheet">
+<style>
+  :root {
+    --accent: #a5552e;
+    --bg: #f4f1ec;
+    --surface: #fbfaf7;
+    --dark: #1d1c1a;
+    --text: #1d1c1a;
+    --text-2: #6e685f;
+    --line: #dcd5ca;
+    --font: "Onest", sans-serif;
+    --font-serif: "Cormorant Garamond", serif;
+  }
+  * { box-sizing: border-box; }
+  html, body { width: 375px; margin: 0; overflow-x: hidden; }
+  body { background: var(--bg); color: var(--text); font: 400 16px/24px var(--font); -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+  h1, h2, h3, p { margin: 0; }
+
+  .wrap { padding: 0 20px; }
+
+  .header { display: flex; align-items: center; height: 64px; padding: 0 12px 0 20px; border-bottom: 1px solid var(--line); }
+  .logo { font: 600 24px/24px var(--font-serif); letter-spacing: .24em; }
+  .header__right { display: flex; gap: 4px; margin-left: auto; }
+  .icon-btn { position: relative; display: grid; place-items: center; width: 44px; height: 44px; }
+  .icon-btn i { position: absolute; top: 6px; right: 4px; display: grid; place-items: center; width: 18px; height: 18px; border-radius: 9px; background: var(--dark); color: #fff; font: 600 11px/12px var(--font); font-style: normal; }
+
+  .search { display: flex; align-items: center; gap: 10px; height: 48px; margin: 16px 20px 0; padding: 0 16px; border: 1px solid var(--line); border-radius: 24px; background: var(--surface); color: var(--text-2); font-size: 14px; line-height: 20px; }
+
+  .hero { padding-top: 32px; }
+  h1 { font: 500 44px/48px var(--font-serif); letter-spacing: -.02em; }
+  h1 em { font-style: italic; color: var(--accent); }
+  .lead { margin-top: 16px; font-size: 16px; line-height: 24px; color: var(--text-2); }
+  .btn { display: flex; align-items: center; justify-content: center; gap: 12px; height: 56px; margin-top: 24px; border-radius: 28px; background: var(--dark); color: #fff; font: 500 16px/24px var(--font); }
+  .micro { margin-top: 12px; font-size: 13px; line-height: 20px; color: var(--text-2); text-align: center; }
+  .price { display: flex; align-items: baseline; justify-content: center; gap: 8px; margin-top: 8px; }
+  .price b { font: 600 18px/24px var(--font); }
+  .price small { font-size: 13px; line-height: 20px; color: var(--text-2); }
+
+  .photo { position: relative; height: 420px; margin-top: 32px; background: #d9cdbb url(assets/bucket.jpg) 36% center / cover no-repeat; }
+  .hotspot { position: absolute; left: 172px; top: 236px; width: 28px; height: 28px; border-radius: 14px; background: rgba(255, 255, 255, .9); box-shadow: 0 0 0 6px rgba(255, 255, 255, .35); }
+  .hotspot::after { content: ""; position: absolute; inset: 9px; border-radius: 5px; background: var(--accent); }
+  .tag { position: absolute; left: 20px; right: 20px; bottom: 20px; display: flex; justify-content: space-between; align-items: flex-end; padding: 14px 16px; background: var(--surface); }
+  .tag small { display: block; font-size: 11px; line-height: 16px; letter-spacing: .12em; text-transform: uppercase; color: var(--text-2); }
+  .tag b { display: block; font: 600 22px/28px var(--font-serif); }
+  .tag em { font: 500 15px/24px var(--font); font-style: normal; color: var(--accent); }
+
+  .ritual-card { display: flex; gap: 16px; margin-top: 24px; padding-bottom: 24px; border-bottom: 1px solid var(--line); }
+  .ritual-card img { width: 80px; height: 100px; object-fit: cover; }
+  .ritual-card small { font: italic 500 20px/24px var(--font-serif); color: var(--accent); }
+  .ritual-card p { margin-top: 4px; font-size: 15px; line-height: 22px; }
+  .ritual-card span { display: inline-block; margin-top: 8px; font: 500 14px/20px var(--font); border-bottom: 1px solid var(--text); }
+
+  .index a { display: flex; align-items: baseline; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--line); }
+  .index i { width: 24px; font: italic 500 18px/24px var(--font-serif); color: var(--accent); }
+  .index b { font: 600 22px/28px var(--font-serif); }
+  .index span { margin-left: auto; font-size: 13px; line-height: 20px; color: var(--text-2); }
+  .index { padding-bottom: 32px; }
+</style>
+</head>
+<body>
+  <header class="header">
+    <a class="logo" href="#">VIHMO</a>
+    <div class="header__right">
+      <a class="icon-btn" href="#" aria-label="Корзина">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 7h12l-1 13H7z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg><i>2</i>
+      </a>
+      <a class="icon-btn" href="#" aria-label="Меню">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 8h16M4 16h16"/></svg>
+      </a>
+    </div>
+  </header>
+
+  <a class="search" href="#">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+    Ковш, запарка, льняное полотенце
+  </a>
+
+  <section class="hero wrap">
+    <h1>Вещи для финской сауны, в&nbsp;которой хочется <em>задержаться</em></h1>
+    <p class="lead">Ковши, вёдра, льняной текстиль и ароматы для пара. Простые формы из дерева и металла, которые служат годами.</p>
+    <a class="btn" href="#">Подобрать вещи для сауны<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    <p class="micro">Доставка по России от 3 дней · возврат 14 дней</p>
+    <div class="price"><b>от 1 290 ₽</b><small>ароматы для пара</small></div>
+  </section>
+
+  <div class="photo">
+    <span class="hotspot"></span>
+    <div class="tag"><div><small>В кадре</small><b>Ведро Kiulu, 5 л</b></div><em>4 900 ₽</em></div>
+  </div>
+
+  <div class="wrap">
+    <a class="ritual-card" href="#">
+      <img src="assets/steam.jpg" alt="">
+      <div>
+        <small>Ritual</small>
+        <p>Пар, холод, тишина: пять шагов финской сауны и вещи для каждого из них</p>
+        <span>Читать и собрать набор</span>
+      </div>
+    </a>
+    <nav class="index">
+      <a href="#"><i>01</i><b>Ковши и вёдра</b><span>сталь, берёза</span></a>
+      <a href="#"><i>02</i><b>Текстиль</b><span>лён, хлопок</span></a>
+      <a href="#"><i>03</i><b>Ароматы для пара</b><span>хвоя, смола</span></a>
+      <a href="#"><i>04</i><b>Наборы</b><span>в подарок</span></a>
+    </nav>
+  </div>
+</body>
+</html>
