@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>НейроБобер — первый экран, мобильная версия</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Inter:wght@400;500;600&display=swap&subset=cyrillic" rel="stylesheet">
+<style>
+  :root {
+    --accent: #ff0033;
+    --accent-soft: #ffe8eb;
+    --bg: #f1eee8;
+    --surface: #f8f8f6;
+    --white: #ffffff;
+    --dark: #171410;
+    --text: #1f1f1c;
+    --text-2: #6f6a62;
+    --border: #dcd7ce;
+    --live: #22c55e;
+    --font: "Inter", sans-serif;
+    --font-h: "Montserrat", sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html, body { width: 375px; margin: 0; overflow-x: hidden; }
+  body { background: var(--bg); color: var(--text); font: 400 16px/24px var(--font); -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+  h1, h2, h3, p { margin: 0; }
+
+  .header { display: flex; align-items: center; justify-content: space-between; height: 64px; margin: 12px 12px 0; padding: 0 8px 0 16px; background: var(--surface); border-radius: 24px; }
+  .logo img { display: block; height: 32px; }
+  .header__right { display: flex; gap: 8px; }
+  .icon-btn { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 22px; background: var(--white); }
+  .icon-btn--dark { background: var(--dark); color: #fff; }
+
+  .panel { margin: 8px 12px 0; padding: 32px 16px 24px; background: var(--surface); border-radius: 28px; text-align: center; }
+  .covers { display: flex; justify-content: center; }
+  .covers img { width: 64px; height: 64px; border-radius: 32px; border: 3px solid var(--surface); margin: 0 -6px; object-fit: cover; }
+  .covers-cap { margin-top: 12px; font-size: 13px; line-height: 20px; color: var(--text-2); }
+  h1 { margin-top: 20px; font: 700 34px/40px var(--font-h); letter-spacing: -.02em; }
+  h1 em { font-style: normal; color: var(--accent); }
+  .lead { margin-top: 16px; font-size: 16px; line-height: 24px; color: var(--text-2); }
+  .btn { display: flex; align-items: center; justify-content: center; gap: 12px; height: 56px; margin-top: 24px; border-radius: 28px; background: var(--accent); color: #fff; font: 600 16px/24px var(--font); box-shadow: 0 12px 24px -12px rgba(255, 0, 51, .55); }
+  .micro { margin-top: 12px; font-size: 13px; line-height: 20px; color: var(--text-2); }
+  .price { display: flex; align-items: baseline; justify-content: center; gap: 8px; margin-top: 16px; }
+  .price b { font: 700 20px/28px var(--font-h); }
+  .price small { font-size: 13px; line-height: 20px; color: var(--text-2); }
+  .link { display: inline-block; margin-top: 16px; font: 600 15px/24px var(--font); border-bottom: 2px solid var(--accent); }
+
+  .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 24px; text-align: left; }
+  .stat { padding: 16px; border-radius: 20px; background: var(--white); }
+  .stat b { display: block; font: 700 22px/28px var(--font-h); }
+  .stat span { display: block; margin-top: 4px; font-size: 13px; line-height: 18px; color: var(--text-2); }
+
+  .visual { position: relative; margin: 8px 12px 0; height: 300px; border-radius: 28px; overflow: hidden; background: var(--dark) url(assets/hero.jpg) 92% center / cover no-repeat; }
+  .live { position: absolute; top: 16px; left: 16px; display: flex; align-items: center; gap: 8px; height: 36px; padding: 0 14px; border-radius: 18px; background: rgba(255, 255, 255, .92); font: 500 13px/20px var(--font); }
+  .live i { width: 8px; height: 8px; border-radius: 4px; background: var(--live); box-shadow: 0 0 0 3px rgba(34, 197, 94, .22); }
+  .card { position: relative; margin: -56px 24px 24px; padding: 20px; background: var(--white); border-radius: 24px; box-shadow: 0 16px 32px -16px rgba(23, 20, 16, .35); }
+  .chip { display: inline-block; padding: 4px 10px; border-radius: 12px; background: var(--accent-soft); color: #c2002a; font: 600 11px/16px var(--font); text-transform: uppercase; letter-spacing: .04em; }
+  .card h3 { margin-top: 10px; font: 700 20px/28px var(--font-h); }
+  .card .author { font-size: 13px; line-height: 20px; color: var(--text-2); }
+  .time { display: flex; align-items: flex-end; justify-content: space-between; margin-top: 16px; }
+  .time s { font-size: 13px; line-height: 20px; color: var(--text-2); }
+  .time b { font: 700 24px/32px var(--font-h); }
+  .bar { height: 6px; margin-top: 8px; border-radius: 3px; background: #eeeae3; }
+  .bar i { display: block; width: 21%; height: 100%; border-radius: 3px; background: var(--accent); }
+  .save { margin-top: 8px; font: 600 13px/20px var(--font); color: #c2002a; }
+  .meta { display: flex; gap: 12px; margin-top: 12px; padding-top: 12px; border-top: 1px solid #eeeae3; font-size: 13px; line-height: 20px; color: var(--text-2); }
+  .meta b { color: var(--text); font-weight: 600; }
+</style>
+</head>
+<body>
+  <header class="header">
+    <a class="logo" href="#"><img src="assets/logo.png" alt="НейроБобер"></a>
+    <div class="header__right">
+      <a class="icon-btn" href="#" aria-label="Telegram">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4z"/><path d="M22 2 11 13"/></svg>
+      </a>
+      <a class="icon-btn icon-btn--dark" href="#" aria-label="Меню">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </a>
+    </div>
+  </header>
+
+  <section class="panel">
+    <div class="covers">
+      <img src="assets/cov1.jpg" alt=""><img src="assets/cov2.jpg" alt=""><img src="assets/cov3.jpg" alt=""><img src="assets/cov4.jpg" alt="">
+    </div>
+    <p class="covers-cap">Курсы, книги и экспертные Telegram-каналы</p>
+    <h1>Суть 30-часового курса <em>за 90 минут чтения</em></h1>
+    <p class="lead">Выжимки без воды и повторов: только схемы, алгоритмы и чек-листы, которые можно внедрять в тот же день.</p>
+    <a class="btn" href="#">Открыть каталог выжимок<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    <p class="micro">Вход через Telegram без пароля · часть выжимок открыта бесплатно</p>
+    <div class="price"><b>от 299 ₽ в месяц</b><small>полный доступ</small></div>
+    <a class="link" href="#">Читать дайджест дня за 5–10 минут</a>
+
+    <div class="stats">
+      <div class="stat"><b>×20</b><span>быстрее, чем смотреть курс в видео</span></div>
+      <div class="stat"><b>5–10 мин</b><span>на дайджест вместо сотен сообщений</span></div>
+      <div class="stat"><b>4 400</b><span>читателей у самой популярной выжимки</span></div>
+      <div class="stat"><b>★ 9,4</b><span>лучшая оценка выжимки от читателей</span></div>
+    </div>
+  </section>
+
+  <div class="visual"><div class="live"><i></i>Дайджесты обновлены сегодня</div></div>
+  <div class="card">
+    <span class="chip">Выжимка недели</span>
+    <h3>Best Seller. Лучший продавец</h3>
+    <p class="author">Ахат Хусаинов · 4 раздела, 18 подразделов</p>
+    <div class="time"><s>Оригинал: 7 ч 3 мин</s><b>1 ч 30 мин</b></div>
+    <div class="bar"><i></i></div>
+    <p class="save">Экономия 5 ч 33 мин</p>
+    <div class="meta"><span><b>★ 8,0</b> · 22 отзыва</span><span><b>111</b> дочитали</span></div>
+  </div>
+</body>
+</html>
