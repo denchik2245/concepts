@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Mixastudio — первый экран, мобильная версия</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap&subset=cyrillic" rel="stylesheet">
+<style>
+  :root {
+    --accent: #3952e0;
+    --accent-hover: #2f45c4;
+    --accent-soft: #e8ecfd;
+    --bg: #eef1f8;
+    --surface: #ffffff;
+    --dark: #141726;
+    --text: #141726;
+    --text-2: #636a80;
+    --on-dark: #ffffff;
+    --on-dark-2: rgba(255, 255, 255, .8);
+    --border: #e1e5f0;
+    --font: "Onest", sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html, body { width: 375px; margin: 0; overflow-x: hidden; }
+  body { background: var(--bg); color: var(--text); font: 400 16px/24px var(--font); -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+  h1, h2, h3, p { margin: 0; }
+  img, svg { display: block; }
+
+  .top { background: linear-gradient(180deg, var(--bg) 0, var(--bg) 72px, #3952e0 180px, #3952e0 100%); padding-bottom: 32px; }
+
+  .header { display: flex; align-items: center; justify-content: space-between; height: 72px; padding: 0 16px; }
+  .logo { display: flex; align-items: center; height: 52px; padding: 0 14px; background: var(--surface); border-radius: 16px; }
+  .logo img { height: 32px; width: auto; }
+  .header__right { display: flex; align-items: center; gap: 8px; }
+  .icon-btn { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 16px; background: var(--surface); color: var(--text); }
+
+  .hero { padding: 40px 20px 0; color: var(--on-dark); }
+  h1 { font-size: 40px; line-height: 44px; font-weight: 600; letter-spacing: -.04em; }
+  .lead { margin-top: 16px; font-size: 16px; line-height: 24px; color: var(--on-dark-2); }
+  .btn { display: flex; align-items: center; justify-content: center; gap: 10px; height: 56px; margin-top: 24px; border-radius: 16px; background: var(--dark); color: #fff; font: 600 16px/24px var(--font); }
+  .micro { margin-top: 12px; font-size: 13px; line-height: 20px; color: var(--on-dark-2); text-align: center; }
+  .micro b { color: #fff; font-weight: 600; }
+
+  .works { position: relative; height: 368px; overflow: hidden; }
+  .laptop { position: absolute; left: 40px; top: 28px; width: 440px; }
+  .chip { position: absolute; left: 16px; top: 16px; display: inline-flex; align-items: center; gap: 8px; height: 32px; padding: 0 12px; border-radius: 10px; background: rgba(20, 23, 38, .88); color: #fff; font-size: 12px; line-height: 16px; z-index: 2; }
+  .chip i { width: 8px; height: 8px; border-radius: 50%; background: #3ddc84; }
+  .shot { position: absolute; margin: 0; background: var(--surface); border-radius: 18px; padding: 6px; box-shadow: 0 24px 48px -20px rgba(20, 23, 38, .35); }
+  .shot img { border-radius: 12px; }
+  .shot figcaption { padding: 8px 6px 2px; font-size: 12px; line-height: 16px; font-weight: 600; }
+  .shot--dubai { left: 16px; top: 168px; width: 200px; transform: rotate(-4deg); }
+  .shot--seo { left: 196px; top: 196px; width: 164px; transform: rotate(3deg); }
+
+  .badges { display: grid; gap: 8px; padding: 0 16px; }
+  .badge { display: flex; align-items: center; gap: 12px; padding: 12px 16px; background: var(--surface); border-radius: 18px; font-size: 14px; line-height: 20px; }
+  .badge .ico { flex: none; display: grid; place-items: center; width: 40px; height: 40px; border-radius: 12px; background: var(--accent-soft); color: var(--accent); }
+  .badge b { display: block; font-weight: 600; }
+  .badge span { color: var(--text-2); }
+  .stars { display: flex; align-items: center; gap: 6px; font-weight: 600; }
+  .stars svg { color: #ffb800; }
+
+  .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 8px 16px 32px; }
+  .stat { padding: 16px; background: var(--surface); border-radius: 18px; }
+  .stat .ico { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 12px; background: var(--accent-soft); color: var(--accent); }
+  .stat b { display: block; margin-top: 12px; white-space: nowrap; font-size: 18px; line-height: 28px; font-weight: 600; letter-spacing: -.02em; }
+  .stat span { display: block; margin-top: 2px; font-size: 13px; line-height: 18px; color: var(--text-2); }
+</style>
+</head>
+<body>
+  <div class="top">
+    <header class="header">
+      <a class="logo" href="#"><img src="assets/logo.png" alt="MIXA studio"></a>
+      <div class="header__right">
+        <a class="icon-btn" href="#" aria-label="Telegram"><svg width="22" height="22" viewBox="0 0 24 24"><path fill="#229ED9" d="M21.6 3.3 2.9 10.5c-1.3.5-1.3 1.2-.2 1.6l4.8 1.5 1.8 5.6c.2.6.4.8.8.8.4 0 .6-.2.9-.5l2.3-2.2 4.8 3.5c.9.5 1.5.2 1.700-.8l3.1-14.7c.3-1.3-.5-1.9-1.3-1.5zM9.4 14.2l-.4 4.1-1.4-4.6L18.2 7z"/></svg></a>
+        <a class="icon-btn" href="#" aria-label="Позвонить"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg></a>
+        <a class="icon-btn" href="#" aria-label="Меню"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></a>
+      </div>
+    </header>
+
+    <section class="hero">
+      <h1>Сайты, которые приносят заявки</h1>
+      <p class="lead">Лендинги, корпоративные сайты и&nbsp;интернет-магазины под ключ — с&nbsp;SEO, CRM и&nbsp;поддержкой после запуска</p>
+      <a class="btn" href="#">Рассчитать стоимость сайта <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <p class="micro"><b>4 вопроса, 2 минуты.</b> Смета — в&nbsp;течение дня</p>
+    </section>
+  </div>
+
+  <div class="works">
+    <span class="chip"><i></i>Лендинг · инвестиции в&nbsp;недвижимость</span>
+    <img class="laptop" src="assets/laptop.webp" alt="Лендинг для инвестиций в недвижимость">
+    <figure class="shot shot--dubai"><img src="assets/dubai.jpg" width="188" alt="Сайт ресторана DUBAI"><figcaption>Ресторан DUBAI</figcaption></figure>
+    <figure class="shot shot--seo"><img src="assets/seo-chart.jpg" width="152" alt="Рост визитов"><figcaption>Инвестиции и&nbsp;SEO</figcaption></figure>
+  </div>
+
+  <div class="badges">
+    <div class="badge">
+      <span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7M7.5 8a2.5 2.5 0 0 1 0-5C10 3 12 8 12 8s2-5 4.5-5a2.5 2.5 0 0 1 0 5"/></svg></span>
+      <p><b>Подарок за анкету</b><span>второй дизайн главной</span></p>
+    </div>
+    <div class="badge">
+      <span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+      <p><b>Отзывы на&nbsp;Авито</b><span class="stars"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg>5,0 · 38 отзывов</span></p>
+    </div>
+  </div>
+
+  <section class="stats">
+    <div class="stat"><span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg></span><b>150+ проектов</b><span>сайтов и&nbsp;кампаний запустили</span></div>
+    <div class="stat"><span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 7-8.5 8.5-5-5L2 17"/><path d="M16 7h6v6"/></svg></span><b>+47% заявок</b><span>средний рост у&nbsp;клиентов</span></div>
+    <div class="stat"><span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><b>от 20 дней</b><span>сайт под ключ</span></div>
+    <div class="stat"><span class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 10 5-10 5L2 7z"/><path d="m2 17 10 5 10-5M2 12l10 5 10-5"/></svg></span><b>На вашей CMS</b><span>Tilda, WordPress или Bitrix</span></div>
+  </section>
+</body>
+</html>
