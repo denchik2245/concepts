@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Chemodanov Music Label — первый экран</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&family=Golos+Text:wght@400;500;600&display=swap&subset=cyrillic" rel="stylesheet">
+<style>
+  :root {
+    /* Тёмно-синий, оранжевый и бирюзовый с label.chemodanov.pro; композиция с референса */
+    --navy: #1c2b4a;
+    --navy-2: #223457;
+    --accent: #fd9f24;
+    --accent-hover: #f08e0c;
+    --teal: #39becd;
+    --bg: #eef0f4;
+    --surface: #ffffff;
+    --text: #1c2b4a;
+    --text-2: #5d6780;
+    --on-dark: #ffffff;
+    --on-dark-2: rgba(255, 255, 255, .72);
+    --on-dark-3: rgba(255, 255, 255, .5);
+    --font: "Golos Text", sans-serif;
+    --display: "Oswald", sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html, body { width: 1920px; margin: 0; overflow-x: hidden; }
+  body { background: var(--bg); color: var(--text); font: 400 16px/24px var(--font); -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+  h1, h2, h3, p { margin: 0; }
+  img, svg { display: block; }
+
+  .container { position: relative; width: 1200px; margin: 0 auto; }
+
+  /* Панель первого экрана */
+  .panel { position: relative; margin: 24px 24px 0; height: 912px; border-radius: 48px; overflow: hidden; color: var(--on-dark);
+    background: radial-gradient(640px 480px at 50% 62%, #2d4374 0%, rgba(45, 67, 116, 0) 100%), var(--navy); }
+  .panel > .container { height: 100%; }
+
+  .header { display: flex; align-items: center; gap: 40px; padding-top: 40px; }
+  .logo img { width: 220px; height: auto; }
+  .menu { display: flex; gap: 24px; font-size: 16px; line-height: 24px; color: var(--on-dark-2); }
+  .pills { display: flex; gap: 8px; margin-left: auto; }
+  .pill { display: inline-flex; align-items: center; gap: 10px; height: 52px; padding: 0 20px; border-radius: 26px; font: 500 17px/24px var(--font); white-space: nowrap; }
+  .pill--fill { background: var(--surface); color: var(--navy); }
+  .pill--line { border: 2px solid rgba(255, 255, 255, .5); }
+
+  /* Заголовок на полосках, как в референсе */
+  .title { position: absolute; left: 0; right: 0; top: 128px; display: flex; flex-direction: column; align-items: center; z-index: 3; }
+  .strip { display: block; padding: 8px 44px 4px; background: var(--surface); color: var(--navy); font: 700 96px/104px var(--display); text-transform: uppercase; letter-spacing: -.005em; white-space: nowrap; }
+  .strip--1 { transform: rotate(-1.5deg); clip-path: polygon(0 4%, 100% 0, 99% 100%, 1% 94%); }
+  .strip--2 { margin-top: -6px; transform: rotate(1deg) translateX(24px); clip-path: polygon(1% 0, 99% 6%, 100% 96%, 0 100%); }
+
+  /* Объекты лейбла */
+  .disc { position: absolute; left: 460px; top: 392px; width: 280px; height: 280px; border-radius: 50%; background: var(--accent); box-shadow: inset -24px -24px 48px rgba(0, 0, 0, .12); z-index: 1; }
+  .disc svg { position: absolute; left: 104px; top: 88px; }
+  .obj { position: absolute; z-index: 2; filter: drop-shadow(0 32px 40px rgba(6, 14, 32, .5)); }
+  .obj--phones { left: 230px; top: 372px; width: 420px; }
+  .obj--vinyl { left: 390px; top: 600px; width: 420px; }
+  .obj--mic { left: 650px; top: 384px; width: 400px; }
+
+  .logo-pill { position: absolute; z-index: 4; display: flex; align-items: center; height: 56px; padding: 0 20px; background: var(--surface); border-radius: 18px; box-shadow: 0 16px 32px -16px rgba(6, 14, 32, .6); }
+  .logo-pill img { height: 26px; width: auto; }
+  .lp--vk { left: 96px; top: 476px; transform: rotate(-6deg); }
+  .lp--apple { left: 136px; top: 600px; transform: rotate(4deg); }
+  .lp--spotify { left: 940px; top: 468px; transform: rotate(5deg); }
+  .lp--yandex { left: 960px; top: 600px; transform: rotate(-3deg); }
+
+  /* Низ панели: о лейбле слева, действие справа */
+  .about { position: absolute; left: 0; top: 752px; width: 420px; z-index: 3; }
+  .about h2 { font-size: 32px; line-height: 40px; font-weight: 600; letter-spacing: -.02em; }
+  .about p { margin-top: 12px; font-size: 16px; line-height: 24px; color: var(--on-dark-2); }
+
+  .action { position: absolute; right: 0; top: 760px; width: 360px; z-index: 3; }
+  .btn-l { display: flex; align-items: center; justify-content: center; gap: 12px; height: 72px; border-radius: 24px; background: var(--accent); color: var(--navy); font: 600 22px/28px var(--font); }
+  .micro { margin-top: 16px; font-size: 15px; line-height: 22px; color: var(--on-dark); }
+  .consent { margin-top: 6px; font-size: 12px; line-height: 16px; color: var(--on-dark-3); }
+  .consent u { text-underline-offset: 2px; }
+
+  /* Цифры под панелью */
+  .stats { height: 144px; }
+  .stats .container { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; height: 100%; align-items: center; }
+  .stat b { display: block; font: 700 44px/52px var(--display); color: var(--navy); text-transform: uppercase; }
+  .stat span { display: block; margin-top: 2px; font-size: 14px; line-height: 20px; color: var(--text-2); }
+  .stat--office b { font-size: 28px; line-height: 36px; padding-top: 8px; padding-bottom: 8px; }
+</style>
+</head>
+<body>
+  <section class="panel">
+    <div class="container">
+      <header class="header">
+        <a class="logo" href="#"><img src="assets/logo.svg" alt="Chemodanov Music Label"></a>
+        <nav class="menu"><a href="#">Услуги</a><a href="#">Артисты</a><a href="#">Партнёры</a><a href="#">Статьи</a><a href="#">Контакты</a></nav>
+        <div class="pills">
+          <a class="pill pill--fill" href="#">+7 (495) 109-02-11</a>
+          <a class="pill pill--line" href="#" data-note="1"><svg width="20" height="20" viewBox="0 0 24 24"><path fill="#39becd" d="M21.6 3.3 2.9 10.5c-1.3.5-1.3 1.2-.2 1.6l4.8 1.5 1.8 5.6c.2.6.4.8.8.8.4 0 .6-.2.9-.5l2.3-2.2 4.8 3.5c.9.5 1.5.2 1.7-.8l3.1-14.7c.3-1.3-.5-1.9-1.3-1.5zM9.4 14.2l-.4 4.1-1.4-4.6L18.2 7z"/></svg>@chemodanovlabel</a>
+        </div>
+      </header>
+
+      <h1 class="title" data-note="2">
+        <span class="strip strip--1">Выпускай музыку</span>
+        <span class="strip strip--2">на всех площадках</span>
+      </h1>
+
+      <div class="disc"><svg width="96" height="112" viewBox="0 0 96 112"><path d="M8 8 88 56 8 104z" fill="#fff"/></svg></div>
+      <img class="obj obj--phones" src="assets/headphones.png" alt="">
+      <img class="obj obj--mic" src="assets/microphone.png" alt="">
+      <img class="obj obj--vinyl" src="assets/vinyl.png" alt="">
+
+      <span class="logo-pill lp--vk"><img src="assets/vk_music.png" alt="VK Музыка"></span>
+      <span class="logo-pill lp--apple"><img src="assets/apple_music.png" alt="Apple Music"></span>
+      <span class="logo-pill lp--spotify"><img src="assets/spotify.png" alt="Spotify"></span>
+      <span class="logo-pill lp--yandex" data-note="3"><img src="assets/yandex_music.png" alt="Яндекс Музыка"></span>
+
+      <div class="about">
+        <h2>Издание, роялти<br>и&nbsp;продвижение</h2>
+        <p>Выпустим релиз в&nbsp;Яндекс Музыке, VK, Звуке и&nbsp;Spotify, соберём авторские и&nbsp;раскрутим трек</p>
+      </div>
+
+      <div class="action">
+        <a class="btn-l" href="#" data-note="4">Отправить трек <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <p class="micro">Бесплатно. Ответим в&nbsp;течение 7&nbsp;дней</p>
+        <p class="consent">Нажимая кнопку, вы&nbsp;даёте <u>согласие на&nbsp;обработку данных</u></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="stats">
+    <div class="container" data-note="5">
+      <div class="stat"><b>1 млрд+</b><span>прослушиваний треков каталога с&nbsp;2008 года</span></div>
+      <div class="stat"><b>200+</b><span>подписанных артистов</span></div>
+      <div class="stat"><b>7 000+</b><span>треков в&nbsp;каталоге</span></div>
+      <div class="stat stat--office"><b>Офис в&nbsp;Москве</b><span>м. Красносельская, пн–пт 10:00–19:00</span></div>
+    </div>
+  </section>
+</body>
+</html>

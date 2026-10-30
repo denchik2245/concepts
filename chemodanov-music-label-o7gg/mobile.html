@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Chemodanov Music Label — первый экран, мобильная версия</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&family=Golos+Text:wght@400;500;600&display=swap&subset=cyrillic" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1c2b4a;
+    --navy-2: #223457;
+    --accent: #fd9f24;
+    --accent-hover: #f08e0c;
+    --teal: #39becd;
+    --bg: #eef0f4;
+    --surface: #ffffff;
+    --text: #1c2b4a;
+    --text-2: #5d6780;
+    --on-dark: #ffffff;
+    --on-dark-2: rgba(255, 255, 255, .72);
+    --on-dark-3: rgba(255, 255, 255, .5);
+    --font: "Golos Text", sans-serif;
+    --display: "Oswald", sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html, body { width: 375px; margin: 0; overflow-x: hidden; }
+  body { background: var(--bg); color: var(--text); font: 400 16px/24px var(--font); -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+  h1, h2, h3, p { margin: 0; }
+  img, svg { display: block; }
+
+  .panel { margin: 8px 8px 0; border-radius: 32px; overflow: hidden; color: var(--on-dark); padding-bottom: 28px;
+    background: radial-gradient(320px 280px at 50% 52%, #2d4374 0%, rgba(45, 67, 116, 0) 100%), var(--navy); }
+
+  .header { display: flex; align-items: center; justify-content: space-between; height: 72px; padding: 0 12px 0 16px; }
+  .logo img { width: 140px; height: auto; }
+  .header__right { display: flex; gap: 8px; }
+  .icon-btn { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 24px; border: 2px solid rgba(255, 255, 255, .4); color: #fff; }
+  .icon-btn--fill { background: var(--surface); border-color: var(--surface); color: var(--navy); }
+
+  .title { display: flex; flex-direction: column; align-items: center; margin-top: 24px; }
+  .strip { display: block; padding: 6px 16px 2px; background: var(--surface); color: var(--navy); font: 700 48px/52px var(--display); text-transform: uppercase; white-space: nowrap; }
+  .strip--1 { margin-top: -6px; transform: rotate(-2deg); clip-path: polygon(0 4%, 100% 0, 99% 100%, 1% 94%); }
+  .strip--2 { margin-top: -6px; transform: rotate(1.5deg); clip-path: polygon(1% 0, 99% 6%, 100% 96%, 0 100%); }
+
+  .visual { position: relative; height: 256px; margin-top: 0; }
+  .disc { position: absolute; left: 112px; top: 20px; width: 150px; height: 150px; border-radius: 50%; background: var(--accent); }
+  .disc svg { position: absolute; left: 56px; top: 47px; }
+  .obj { position: absolute; filter: drop-shadow(0 16px 20px rgba(6, 14, 32, .5)); }
+  .obj--phones { left: 20px; top: -8px; width: 208px; }
+  .obj--mic { left: 172px; top: -10px; width: 204px; }
+  .obj--vinyl { left: 92px; top: 68px; width: 208px; }
+  .logo-pill { position: absolute; display: flex; align-items: center; height: 40px; padding: 0 12px; background: var(--surface); border-radius: 12px; box-shadow: 0 10px 20px -10px rgba(6, 14, 32, .6); z-index: 2; }
+  .logo-pill img { height: 18px; width: auto; }
+  .lp--vk { left: 12px; top: 180px; transform: rotate(-5deg); }
+  .lp--yandex { right: 12px; top: 198px; transform: rotate(4deg); }
+
+  .about { padding: 8px 20px 0; }
+  .about h2 { font-size: 24px; line-height: 32px; font-weight: 600; letter-spacing: -.02em; }
+  .about p { margin-top: 8px; font-size: 15px; line-height: 22px; color: var(--on-dark-2); }
+
+  .action { padding: 16px 20px 0; }
+  .btn { display: flex; align-items: center; justify-content: center; gap: 10px; height: 60px; border-radius: 20px; background: var(--accent); color: var(--navy); font: 600 18px/24px var(--font); }
+  .micro { margin-top: 12px; font-size: 14px; line-height: 20px; text-align: center; }
+  .consent { margin-top: 4px; font-size: 11px; line-height: 16px; color: var(--on-dark-3); text-align: center; }
+
+  .stats { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 8px 8px 24px; }
+  .stat { padding: 16px; background: var(--surface); border-radius: 20px; }
+  .stat b { display: block; font: 700 32px/40px var(--display); color: var(--navy); text-transform: uppercase; }
+  .stat span { display: block; margin-top: 2px; font-size: 13px; line-height: 18px; color: var(--text-2); }
+  .stat--office b { font-size: 22px; line-height: 28px; }
+
+  .platforms { padding: 0 8px 24px; }
+  .platforms p { padding: 0 8px; font-size: 13px; line-height: 20px; color: var(--text-2); }
+  .platforms div { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+  .platforms span { display: flex; align-items: center; height: 44px; padding: 0 14px; background: var(--surface); border-radius: 14px; }
+  .platforms img { height: 20px; width: auto; }
+</style>
+</head>
+<body>
+  <section class="panel">
+    <header class="header">
+      <a class="logo" href="#"><img src="assets/logo.svg" alt="Chemodanov Music Label"></a>
+      <div class="header__right">
+        <a class="icon-btn" href="#" aria-label="Telegram"><svg width="20" height="20" viewBox="0 0 24 24"><path fill="#39becd" d="M21.6 3.3 2.9 10.5c-1.3.5-1.3 1.2-.2 1.6l4.8 1.5 1.8 5.6c.2.6.4.8.8.8.4 0 .6-.2.9-.5l2.3-2.2 4.8 3.5c.9.5 1.5.2 1.7-.8l3.1-14.7c.3-1.3-.5-1.9-1.3-1.5zM9.4 14.2l-.4 4.1-1.4-4.6L18.2 7z"/></svg></a>
+        <a class="icon-btn icon-btn--fill" href="#" aria-label="Меню"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></a>
+      </div>
+    </header>
+
+    <h1 class="title">
+      <span class="strip strip--1">Выпускай</span>
+      <span class="strip strip--2">музыку</span>
+      <span class="strip strip--1">на&nbsp;всех</span>
+      <span class="strip strip--2">площадках</span>
+    </h1>
+
+    <div class="visual">
+      <div class="disc"><svg width="48" height="56" viewBox="0 0 96 112"><path d="M8 8 88 56 8 104z" fill="#fff"/></svg></div>
+      <img class="obj obj--phones" src="assets/headphones.png" alt="">
+      <img class="obj obj--mic" src="assets/microphone.png" alt="">
+      <img class="obj obj--vinyl" src="assets/vinyl.png" alt="">
+      <span class="logo-pill lp--vk"><img src="assets/vk_music.png" alt="VK Музыка"></span>
+      <span class="logo-pill lp--yandex"><img src="assets/yandex_music.png" alt="Яндекс Музыка"></span>
+    </div>
+
+    <div class="about">
+      <h2>Издание, роялти и&nbsp;продвижение</h2>
+      <p>Выпустим релиз в&nbsp;Яндекс Музыке, VK, Звуке и&nbsp;Spotify, соберём авторские и&nbsp;раскрутим трек</p>
+    </div>
+
+    <div class="action">
+      <a class="btn" href="#">Отправить трек <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <p class="micro">Бесплатно. Ответим в&nbsp;течение 7&nbsp;дней</p>
+      <p class="consent">Нажимая кнопку, вы&nbsp;даёте <u>согласие на&nbsp;обработку данных</u></p>
+    </div>
+  </section>
+
+  <section class="stats">
+    <div class="stat"><b>1 млрд+</b><span>прослушиваний с&nbsp;2008 года</span></div>
+    <div class="stat"><b>200+</b><span>подписанных артистов</span></div>
+    <div class="stat"><b>7 000+</b><span>треков в&nbsp;каталоге</span></div>
+    <div class="stat stat--office"><b>Офис в&nbsp;Москве</b><span>м. Красносельская, пн–пт 10–19</span></div>
+  </section>
+
+  <section class="platforms">
+    <p>Релизы выходят на</p>
+    <div>
+      <span><img src="assets/yandex_music.png" alt="Яндекс Музыка"></span>
+      <span><img src="assets/vk_music.png" alt="VK Музыка"></span>
+      <span><img src="assets/zvuk.png" alt="Звук"></span>
+      <span><img src="assets/spotify.png" alt="Spotify"></span>
+      <span><img src="assets/apple_music.png" alt="Apple Music"></span>
+      <span><img src="assets/youtube_music.png" alt="YouTube Music"></span>
+    </div>
+  </section>
+</body>
+</html>
