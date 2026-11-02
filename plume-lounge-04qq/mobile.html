@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Plume lounge — первый экран, мобильная версия</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic" rel="stylesheet">
+<style>
+  :root {
+    --accent: #d8b47c;
+    --accent-hover: #c9a26a;
+    --bg: #111113;
+    --surface: rgba(255, 255, 255, .06);
+    --surface-strong: rgba(22, 21, 22, .56);
+    --dark: #0b0b0c;
+    --text: #f4f1ec;
+    --text-2: rgba(244, 241, 236, .68);
+    --text-3: rgba(244, 241, 236, .48);
+    --border: rgba(255, 255, 255, .14);
+    --font: "Montserrat", sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html, body { width: 375px; margin: 0; overflow-x: hidden; }
+  body { background: var(--bg); color: var(--text); font: 400 16px/24px var(--font); -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+  h1, h2, h3, p { margin: 0; }
+
+  .wrap { padding: 0 20px; }
+
+  .top { position: relative; overflow: hidden; }
+  .top__photo { position: absolute; left: 0; right: 0; top: 0; height: 720px; background: url(assets/hero-m.jpg) 62% center / cover no-repeat; }
+  .top__shade { position: absolute; left: 0; right: 0; top: 0; height: 720px;
+    background: linear-gradient(180deg, rgba(11,11,12,.72) 0px, rgba(11,11,12,.80) 200px, rgba(11,11,12,.88) 440px, #111113 720px); }
+
+  .header { position: relative; display: flex; align-items: center; justify-content: space-between; height: 64px; padding: 0 20px; border-bottom: 1px solid rgba(255,255,255,.08); }
+  .logo { display: flex; align-items: baseline; gap: 4px; font-size: 22px; line-height: 28px; font-weight: 700; letter-spacing: .02em; }
+  .logo span { font-weight: 400; font-size: 12px; letter-spacing: .2em; text-transform: uppercase; color: var(--accent); }
+  .header__right { display: flex; align-items: center; gap: 8px; }
+  .icon-btn { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 12px; border: 1px solid var(--border); background: var(--surface); }
+
+  .hero { position: relative; padding-top: 40px; }
+  h1 { font-weight: 600; }
+  h1 .h1-brand { display: block; font-size: 36px; line-height: 44px; font-weight: 700; letter-spacing: -.02em; color: var(--accent); }
+  h1 .h1-rest { display: block; margin-top: 12px; font-size: 28px; line-height: 36px; letter-spacing: -.01em; }
+  .lead { margin-top: 16px; font-size: 16px; line-height: 24px; color: var(--text-2); }
+  .btn { display: flex; align-items: center; justify-content: center; width: 100%; height: 56px; margin-top: 32px; border-radius: 12px; background: var(--accent); color: #17140f; font: 600 16px/24px var(--font); box-shadow: 0 12px 32px rgba(216, 180, 124, .24); }
+  .micro { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 12px; font-size: 13px; line-height: 20px; color: var(--text-2); text-align: center; }
+  .micro svg { flex: none; color: var(--accent); }
+
+  .dishes { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 32px; }
+  .dish { padding: 8px 8px 16px; border-radius: 20px; background: var(--surface-strong); border: 1px solid var(--border); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
+  .dish__photo { height: 120px; border-radius: 14px; background-size: cover; background-position: center; }
+  .dish__tag { margin: 12px 4px 0; font-size: 11px; line-height: 16px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); }
+  .dish__name { margin: 4px 4px 0; font-size: 14px; line-height: 20px; font-weight: 600; }
+  .dish__price { margin: 4px 4px 0; font-size: 14px; line-height: 20px; font-weight: 600; color: var(--accent); }
+  .menu-link { display: flex; align-items: center; justify-content: center; gap: 8px; height: 48px; margin-top: 12px; border-radius: 12px; border: 1px solid var(--border); font-size: 15px; line-height: 24px; font-weight: 500; }
+
+  .facts { position: relative; margin: 32px 0 40px; padding: 0 16px; border-radius: 20px; background: var(--surface); border: 1px solid rgba(255,255,255,.10); }
+  .fact { display: grid; grid-template-columns: 40px 1fr; column-gap: 16px; align-items: center; padding: 16px 0; }
+  .fact + .fact { border-top: 1px solid rgba(255,255,255,.08); }
+  .fact__icon { grid-row: span 2; }
+  .fact__icon { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: rgba(216, 180, 124, .12); color: var(--accent); }
+  .fact__title { font-size: 15px; line-height: 20px; font-weight: 600; }
+  .fact__title b { color: var(--accent); font-weight: 700; }
+  .fact__text { margin-top: 2px; font-size: 13px; line-height: 18px; color: var(--text-2); }
+</style>
+</head>
+<body>
+  <div class="top">
+    <div class="top__photo"></div>
+    <div class="top__shade"></div>
+
+    <header class="header">
+      <a class="logo" href="#">Plume <span>lounge</span></a>
+      <div class="header__right">
+        <a class="icon-btn" href="#" aria-label="Telegram">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 4.5 2.8 11.7c-.8.3-.8 1.4 0 1.7l4.6 1.6 1.8 5.6c.2.7 1.1.9 1.6.4l2.6-2.5 4.6 3.4c.6.4 1.4.1 1.6-.6L22.9 5.8c.2-.9-.6-1.6-1.4-1.3z"/><path d="m7.4 15 10.1-7.3"/></svg>
+        </a>
+        <a class="icon-btn" href="tel:+79534042222" aria-label="Позвонить">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
+        </a>
+        <a class="icon-btn" href="#" aria-label="Меню">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </a>
+      </div>
+    </header>
+
+    <section class="hero wrap">
+      <h1><span class="h1-brand">Plume lounge —</span><span class="h1-rest">пространство твоего расслабления в Набережных Челнах</span></h1>
+      <p class="lead">Авторская кухня, бар и безупречный сервис на проспекте Мира</p>
+      <a class="btn" href="#">Забронировать стол</a>
+      <p class="micro">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.6A8.4 8.4 0 1 1 21 11.5z"/></svg>
+        Подтвердим стол за 5 минут
+      </p>
+
+      <div class="dishes">
+        <div class="dish">
+          <div class="dish__photo" style="background-image:url(assets/dish.jpg)"></div>
+          <p class="dish__tag">Кухня</p>
+          <p class="dish__name">Стейк рибай</p>
+          <p class="dish__price">890 ₽</p>
+        </div>
+        <div class="dish">
+          <div class="dish__photo" style="background-image:url(assets/cocktail.jpg); background-position: center 40%"></div>
+          <p class="dish__tag">Бар</p>
+          <p class="dish__name">Коктейль «Plume»</p>
+          <p class="dish__price">590 ₽</p>
+        </div>
+      </div>
+      <a class="menu-link" href="#">Смотреть меню с ценами
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+
+      <div class="facts">
+        <div class="fact">
+          <span class="fact__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+          <p class="fact__title">пр. Мира, 12А</p><p class="fact__text">Медгородок, у КамПИ</p>
+        </div>
+        <div class="fact">
+          <span class="fact__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span>
+          <p class="fact__title">До 03:00 в пт и сб</p><p class="fact__text">вс–чт с 11:00 до 01:00</p>
+        </div>
+        <div class="fact">
+          <span class="fact__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.6 4.6A2 2 0 1 1 11 8H2"/><path d="M12.6 19.4A2 2 0 1 0 14 16H2"/><path d="M17.5 8a2.5 2.5 0 1 1 2 4H2"/></svg></span>
+          <p class="fact__title">Мощная вытяжка</p><p class="fact__text">Дышится легко весь вечер</p>
+        </div>
+        <div class="fact">
+          <span class="fact__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 2.5l2.9 6 6.6.8-4.9 4.6 1.3 6.5L12 17.2l-5.9 3.2 1.3-6.5L2.5 9.3l6.6-.8z"/></svg></span>
+          <p class="fact__title"><b>4,8</b> на Яндекс Картах</p><p class="fact__text">312 оценок гостей</p>
+        </div>
+      </div>
+    </section>
+  </div>
+</body>
+</html>

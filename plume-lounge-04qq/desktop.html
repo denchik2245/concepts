@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Plume lounge — первый экран</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap&subset=cyrillic" rel="stylesheet">
+<style>
+  :root {
+    /* Графит + тёплый золотисто-песочный — под тёплый свет ламп в зале */
+    --accent: #d8b47c;
+    --accent-hover: #c9a26a;
+    --bg: #111113;
+    --surface: rgba(255, 255, 255, .06);
+    --surface-strong: rgba(22, 21, 22, .56);
+    --dark: #0b0b0c;
+    --text: #f4f1ec;
+    --text-2: rgba(244, 241, 236, .68);
+    --text-3: rgba(244, 241, 236, .48);
+    --border: rgba(255, 255, 255, .14);
+    --font: "Montserrat", sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html, body { width: 1920px; margin: 0; overflow-x: hidden; }
+  body { background: var(--bg); color: var(--text); font: 400 16px/24px var(--font); -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+  h1, h2, h3, p { margin: 0; }
+
+  .container { position: relative; width: 1200px; margin: 0 auto; }
+
+  /* Фото зала на весь экран */
+  .screen { position: relative; min-height: 1080px; overflow: hidden; }
+  .screen__photo { position: absolute; inset: 0; background: url(assets/hero.jpg) center 58% / cover no-repeat; }
+  .screen__shade { position: absolute; inset: 0;
+    background:
+      linear-gradient(90deg, rgba(11,11,12,.94) 0px, rgba(11,11,12,.82) 760px, rgba(11,11,12,.30) 1240px, rgba(11,11,12,.10) 1920px),
+      linear-gradient(180deg, rgba(11,11,12,.70) 0px, rgba(11,11,12,0) 200px, rgba(11,11,12,0) 760px, rgba(11,11,12,.92) 1080px); }
+
+  .header { position: relative; height: 96px; border-bottom: 1px solid rgba(255,255,255,.08); }
+  .header .container { display: flex; align-items: center; height: 100%; gap: 64px; }
+  .logo { display: flex; align-items: baseline; gap: 6px; font-size: 28px; line-height: 32px; font-weight: 700; letter-spacing: .02em; }
+  .logo span { font-weight: 400; font-size: 16px; letter-spacing: .24em; text-transform: uppercase; color: var(--accent); }
+  .menu { display: flex; gap: 40px; font-size: 16px; line-height: 24px; font-weight: 500; color: var(--text-2); }
+  .header__right { display: flex; align-items: center; gap: 24px; margin-left: auto; }
+  .phone { font-size: 16px; line-height: 24px; font-weight: 600; }
+  .icon-btn { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 12px; border: 1px solid var(--border); background: var(--surface); }
+
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 12px; border-radius: 12px; font: 600 16px/24px var(--font); white-space: nowrap; }
+  .btn--m { height: 48px; padding: 0 24px; }
+  .btn--l { height: 64px; padding: 0 40px; font-size: 18px; }
+  .btn--primary { background: var(--accent); color: #17140f; box-shadow: 0 16px 40px rgba(216, 180, 124, .24); }
+  .btn--ghost { border: 1px solid rgba(216, 180, 124, .56); color: var(--accent); }
+
+  .hero { position: relative; padding-top: 136px; }
+  .hero .container { display: flex; justify-content: space-between; }
+  .offer { width: 792px; }
+  h1 { font-weight: 600; }
+  h1 .h1-brand { display: block; font-size: 88px; line-height: 96px; font-weight: 700; letter-spacing: -.02em; color: var(--accent); }
+  h1 .h1-rest { display: block; margin-top: 16px; width: 720px; font-size: 48px; line-height: 60px; letter-spacing: -.01em; }
+  .lead { margin-top: 32px; width: 588px; font-size: 20px; line-height: 32px; color: var(--text-2); }
+
+  .action { display: flex; align-items: center; gap: 24px; margin-top: 48px; }
+  .micro { display: flex; align-items: center; gap: 12px; font-size: 14px; line-height: 20px; color: var(--text-2); }
+  .micro svg { flex: none; color: var(--accent); }
+  .menu-link { display: inline-flex; align-items: center; gap: 8px; margin-top: 32px; font-size: 16px; line-height: 24px; font-weight: 500; color: var(--text); border-bottom: 1px solid rgba(244,241,236,.32); padding-bottom: 4px; }
+
+  /* Стеклянные плашки меню */
+  .dishes { position: relative; width: 384px; height: 640px; margin-top: -24px; }
+  .dish { position: absolute; width: 320px; padding: 12px 12px 20px; border-radius: 24px; background: var(--surface-strong); border: 1px solid var(--border); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); box-shadow: 0 24px 64px rgba(0,0,0,.48); }
+  .dish--food { top: 0; right: 0; transform: rotate(3deg); }
+  .dish--bar { top: 336px; left: -24px; transform: rotate(-4deg); }
+  .dish__photo { height: 176px; border-radius: 16px; background-size: cover; background-position: center; }
+  .dish__tag { margin: 16px 8px 0; font-size: 12px; line-height: 20px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--accent); }
+  .dish__row { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin: 4px 8px 0; }
+  .dish__name { font-size: 16px; line-height: 24px; font-weight: 600; }
+  .dish__price { font-size: 16px; line-height: 24px; font-weight: 600; color: var(--accent); white-space: nowrap; }
+  .dish__meta { margin: 4px 8px 0; font-size: 13px; line-height: 20px; color: var(--text-3); }
+
+  /* Панель фактов */
+  .facts { position: absolute; left: 0; right: 0; bottom: 48px; }
+  .facts__panel { display: grid; grid-template-columns: repeat(4, 1fr); height: 120px; border-radius: 24px; background: rgba(20, 19, 20, .52); border: 1px solid var(--border); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+  .fact { display: flex; align-items: center; gap: 16px; padding: 0 24px; }
+  .fact + .fact { border-left: 1px solid rgba(255,255,255,.10); }
+  .fact__icon { display: grid; place-items: center; flex: none; width: 48px; height: 48px; border-radius: 50%; background: rgba(216, 180, 124, .12); color: var(--accent); }
+  .fact__title { font-size: 16px; line-height: 24px; font-weight: 600; }
+  .fact__text { font-size: 14px; line-height: 20px; color: var(--text-2); }
+  .fact__title b { color: var(--accent); font-weight: 700; }
+</style>
+</head>
+<body>
+  <section class="screen">
+    <div class="screen__photo"></div>
+    <div class="screen__shade"></div>
+
+    <header class="header">
+      <div class="container">
+        <a class="logo" href="#">Plume <span>lounge</span></a>
+        <nav class="menu">
+          <a href="#">Атмосфера</a><a href="#">Меню</a><a href="#">Акции</a><a href="#">Контакты</a>
+        </nav>
+        <div class="header__right">
+          <a class="phone" href="tel:+79534042222">+7 (953) 404-22-22</a>
+          <a class="icon-btn" href="#" aria-label="Telegram">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21.5 4.5 2.8 11.7c-.8.3-.8 1.4 0 1.7l4.6 1.6 1.8 5.6c.2.7 1.1.9 1.6.4l2.6-2.5 4.6 3.4c.6.4 1.4.1 1.6-.6L22.9 5.8c.2-.9-.6-1.6-1.4-1.3z"/><path d="m7.4 15 10.1-7.3"/></svg>
+          </a>
+          <a class="btn btn--m btn--ghost" href="#">Забронировать</a>
+        </div>
+      </div>
+    </header>
+
+    <div class="hero">
+      <div class="container">
+        <div class="offer">
+          <h1 data-note="1"><span class="h1-brand">Plume lounge —</span><span class="h1-rest">пространство твоего расслабления в Набережных Челнах</span></h1>
+          <p class="lead">Авторская кухня, бар и безупречный сервис на проспекте Мира</p>
+          <div class="action">
+            <a class="btn btn--l btn--primary" href="#" data-note="3">Забронировать стол</a>
+            <p class="micro">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.4 8.4 0 0 1-12.4 7.4L3 21l2.1-5.6A8.4 8.4 0 1 1 21 11.5z"/></svg>
+              <span>В Telegram или по телефону —<br>подтвердим стол за 5 минут</span>
+            </p>
+          </div>
+          <a class="menu-link" href="#">Смотреть меню с ценами
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+
+        <div class="dishes" data-note="2">
+          <div class="dish dish--food">
+            <div class="dish__photo" style="background-image:url(assets/dish.jpg)"></div>
+            <p class="dish__tag">Кухня</p>
+            <div class="dish__row"><span class="dish__name">Стейк рибай</span><span class="dish__price">890 ₽</span></div>
+            <p class="dish__meta">Соус демиглас, гратен · 280 г</p>
+          </div>
+          <div class="dish dish--bar">
+            <div class="dish__photo" style="background-image:url(assets/cocktail.jpg); background-position: center 40%"></div>
+            <p class="dish__tag">Бар</p>
+            <div class="dish__row"><span class="dish__name">Коктейль «Plume»</span><span class="dish__price">590 ₽</span></div>
+            <p class="dish__meta">Бурбон, дымный розмарин, апельсин</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="facts">
+      <div class="container">
+        <div class="facts__panel">
+          <div class="fact" data-note="4">
+            <span class="fact__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+            <div><p class="fact__title">пр. Мира, 12А</p><p class="fact__text">Медгородок, у КамПИ</p></div>
+          </div>
+          <div class="fact">
+            <span class="fact__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></span>
+            <div><p class="fact__title">До 03:00 в пт и сб</p><p class="fact__text">вс–чт с 11:00 до 01:00</p></div>
+          </div>
+          <div class="fact">
+            <span class="fact__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.6 4.6A2 2 0 1 1 11 8H2"/><path d="M12.6 19.4A2 2 0 1 0 14 16H2"/><path d="M17.5 8a2.5 2.5 0 1 1 2 4H2"/></svg></span>
+            <div><p class="fact__title">Мощная вытяжка</p><p class="fact__text">Дышится легко</p></div>
+          </div>
+          <div class="fact" data-note="5">
+            <span class="fact__icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="none"><path d="M12 2.5l2.9 6 6.6.8-4.9 4.6 1.3 6.5L12 17.2l-5.9 3.2 1.3-6.5L2.5 9.3l6.6-.8z"/></svg></span>
+            <div><p class="fact__title"><b>4,8</b> — Яндекс Карты</p><p class="fact__text">312 оценок гостей</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+</html>
