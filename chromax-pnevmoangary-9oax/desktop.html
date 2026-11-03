@@ -40,11 +40,11 @@
   .logo { display: flex; align-items: center; gap: 12px; }
   .logo__mark { width: 32px; height: 32px; }
   .logo__name { font-size: 22px; line-height: 24px; font-weight: 700; letter-spacing: .08em; }
-  .logo__sub { display: block; font-size: 12px; line-height: 16px; color: var(--on-dark-3); font-weight: 500; letter-spacing: 0; }
-  .menu { display: flex; gap: 32px; margin-left: 72px; font-size: 16px; line-height: 24px; font-weight: 500; }
+  .logo__sub { display: block; white-space: nowrap; font-size: 12px; line-height: 16px; color: var(--on-dark-3); font-weight: 500; letter-spacing: 0; }
+  .menu { display: flex; gap: 28px; margin-left: 64px; font-size: 16px; line-height: 24px; font-weight: 500; }
   .header__right { display: flex; align-items: center; gap: 32px; margin-left: auto; }
   .phone { text-align: right; font-size: 16px; line-height: 24px; font-weight: 600; }
-  .phone span { display: block; font-size: 12px; line-height: 16px; font-weight: 400; color: var(--on-dark-3); }
+  .phone span { display: block; white-space: nowrap; font-size: 12px; line-height: 16px; font-weight: 400; color: var(--on-dark-3); }
 
   .btn { display: inline-flex; align-items: center; justify-content: center; gap: 12px; border-radius: 4px; font: 600 16px/24px var(--font); white-space: nowrap; }
   .btn--m { height: 48px; padding: 0 24px; border: 1px solid rgba(255,255,255,.4); }
@@ -60,10 +60,10 @@
   .lead { font-size: 20px; line-height: 32px; color: var(--on-dark-2); }
   .actions { display: flex; align-items: center; gap: 32px; margin-top: 40px; }
   .link { display: inline-flex; align-items: center; gap: 8px; font-size: 16px; line-height: 24px; font-weight: 600; border-bottom: 1px solid rgba(255,255,255,.4); padding-bottom: 2px; }
-  .micro { margin-top: 16px; font-size: 14px; line-height: 20px; color: var(--on-dark-3); }
+  .micro { width: 640px; margin-top: 16px; font-size: 14px; line-height: 20px; color: var(--on-dark-3); }
 
   .clients { position: absolute; top: 620px; right: 0; width: 384px; text-align: right; }
-  .clients p { font-size: 14px; line-height: 20px; color: var(--on-dark-3); }
+  .clients p { font-size: 14px; line-height: 20px; color: var(--on-dark-2); }
   .clients ul { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px; margin: 16px 0 0; padding: 0; list-style: none; }
   .clients li { height: 40px; padding: 0 16px; display: flex; align-items: center; border: 1px solid var(--border-dark); border-radius: 4px; font-size: 15px; font-weight: 600; letter-spacing: .02em; background: rgba(11,17,24,.32); }
 
@@ -90,7 +90,7 @@
         <a href="#">Продукция</a><a href="#">Проекты</a><a href="#">Генподряд</a><a href="#">Лизинг</a><a href="#">О заводе</a><a href="#">Контакты</a>
       </nav>
       <div class="header__right">
-        <a class="phone" href="#">+7 (8482) 26-19-63<span>Отдел продаж, пн–пт 8:00–18:00</span></a>
+        <a class="phone" href="#">+7 (8482) 26-19-63<span>Отдел продаж, пн–пт 8–18</span></a>
         <a class="btn btn--m" href="#">Получить КП</a>
       </div>
     </div>
@@ -108,7 +108,7 @@
           </a>
           <a class="link" href="#">Отправить ТЗ на просчёт</a>
         </div>
-        <p class="micro">Инженер подберёт конфигурацию и отопление и пришлёт предложение в течение рабочего дня</p>
+        <p class="micro">Инженер подберёт конфигурацию и пришлёт предложение в течение рабочего дня</p>
       </div>
 
       <div class="clients" data-note="4">
