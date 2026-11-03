@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Chromax — первый экран</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&display=swap&subset=cyrillic" rel="stylesheet">
+<style>
+  :root {
+    /* Палитра с референса: тёмная сцена, белый текст, белая кнопка; акцент — сигнальный оранжевый промышленной маркировки */
+    --accent: #ff6a2b;
+    --bg: #0b1118;
+    --surface: #ffffff;
+    --dark: #0b1118;
+    --text: #0b1118;
+    --on-dark: #ffffff;
+    --on-dark-2: rgba(255, 255, 255, .72);
+    --on-dark-3: rgba(255, 255, 255, .48);
+    --border-dark: rgba(255, 255, 255, .2);
+    --font: "Inter Tight", sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html, body { width: 1920px; margin: 0; overflow-x: hidden; }
+  body { background: var(--bg); color: var(--on-dark); font: 400 16px/24px var(--font); -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+  h1, h2, h3, p { margin: 0; }
+
+  .screen { position: relative; height: 1080px; overflow: hidden; }
+  .photo { position: absolute; inset: 0; width: 1920px; height: 1080px; object-fit: cover; object-position: center 70%; transform: scaleX(-1); }
+  .shade { position: absolute; inset: 0;
+    background:
+      linear-gradient(90deg, rgba(11,17,24,.92) 0px, rgba(11,17,24,.72) 760px, rgba(11,17,24,.12) 1400px),
+      linear-gradient(180deg, rgba(11,17,24,.55) 0px, rgba(11,17,24,0) 360px, rgba(11,17,24,0) 640px, rgba(11,17,24,.94) 1000px); }
+
+  .container { position: relative; width: 1200px; margin: 0 auto; }
+
+  .header { position: relative; height: 96px; }
+  .header .container { display: flex; align-items: center; height: 100%; border-bottom: 1px solid var(--border-dark); }
+  .logo { display: flex; align-items: center; gap: 12px; }
+  .logo__mark { width: 32px; height: 32px; }
+  .logo__name { font-size: 22px; line-height: 24px; font-weight: 700; letter-spacing: .08em; }
+  .logo__sub { display: block; font-size: 12px; line-height: 16px; color: var(--on-dark-3); font-weight: 500; letter-spacing: 0; }
+  .menu { display: flex; gap: 32px; margin-left: 72px; font-size: 16px; line-height: 24px; font-weight: 500; }
+  .header__right { display: flex; align-items: center; gap: 32px; margin-left: auto; }
+  .phone { text-align: right; font-size: 16px; line-height: 24px; font-weight: 600; }
+  .phone span { display: block; font-size: 12px; line-height: 16px; font-weight: 400; color: var(--on-dark-3); }
+
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 12px; border-radius: 4px; font: 600 16px/24px var(--font); white-space: nowrap; }
+  .btn--m { height: 48px; padding: 0 24px; border: 1px solid rgba(255,255,255,.4); }
+  .btn--l { height: 64px; padding: 0 32px; font-size: 18px; }
+  .btn--white { background: var(--surface); color: var(--text); }
+
+  .hero { position: relative; height: 984px; }
+  .hero .container { height: 100%; }
+  h1 { position: absolute; top: 88px; left: 0; width: 1000px; font-size: 80px; line-height: 84px; font-weight: 700; letter-spacing: -.03em; }
+  h1 em { font-style: normal; color: var(--on-dark-3); }
+
+  .offer { position: absolute; top: 500px; left: 0; width: 588px; }
+  .lead { font-size: 20px; line-height: 32px; color: var(--on-dark-2); }
+  .actions { display: flex; align-items: center; gap: 32px; margin-top: 40px; }
+  .link { display: inline-flex; align-items: center; gap: 8px; font-size: 16px; line-height: 24px; font-weight: 600; border-bottom: 1px solid rgba(255,255,255,.4); padding-bottom: 2px; }
+  .micro { margin-top: 16px; font-size: 14px; line-height: 20px; color: var(--on-dark-3); }
+
+  .clients { position: absolute; top: 620px; right: 0; width: 384px; text-align: right; }
+  .clients p { font-size: 14px; line-height: 20px; color: var(--on-dark-3); }
+  .clients ul { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px; margin: 16px 0 0; padding: 0; list-style: none; }
+  .clients li { height: 40px; padding: 0 16px; display: flex; align-items: center; border: 1px solid var(--border-dark); border-radius: 4px; font-size: 15px; font-weight: 600; letter-spacing: .02em; background: rgba(11,17,24,.32); }
+
+  .facts { position: absolute; left: 0; bottom: 56px; width: 1200px; display: grid; grid-template-columns: repeat(4, 282px); gap: 24px; padding-top: 32px; border-top: 1px solid var(--border-dark); }
+  .steps { display: flex; gap: 4px; margin-bottom: 20px; }
+  .steps i { width: 8px; height: 8px; background: rgba(255,255,255,.24); }
+  .steps i.on { background: var(--accent); }
+  .fact b { display: block; font-size: 40px; line-height: 44px; font-weight: 700; letter-spacing: -.02em; }
+  .fact span { display: block; margin-top: 8px; font-size: 16px; line-height: 24px; color: var(--on-dark-2); }
+</style>
+</head>
+<body>
+<div class="screen">
+  <img class="photo" src="assets/hero.jpg" alt="Арки пневмоангара">
+  <div class="shade"></div>
+
+  <header class="header">
+    <div class="container">
+      <a class="logo" href="#">
+        <svg class="logo__mark" viewBox="0 0 32 32" fill="none"><path d="M2 28C2 15 8 6 16 6s14 9 14 22" stroke="#fff" stroke-width="3"/><path d="M9 28c0-8 3-14 7-14s7 6 7 14" stroke="#ff6a2b" stroke-width="3"/></svg>
+        <span class="logo__name">CHROMAX<span class="logo__sub">Завод пневмоангаров · Тольятти</span></span>
+      </a>
+      <nav class="menu">
+        <a href="#">Продукция</a><a href="#">Проекты</a><a href="#">Генподряд</a><a href="#">Лизинг</a><a href="#">О заводе</a><a href="#">Контакты</a>
+      </nav>
+      <div class="header__right">
+        <a class="phone" href="#">+7 (8482) 26-19-63<span>Отдел продаж, пн–пт 8:00–18:00</span></a>
+        <a class="btn btn--m" href="#">Получить КП</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <h1 data-note="1">Пневмоангары от&nbsp;производителя: склад или цех за&nbsp;30&nbsp;дней <em>без&nbsp;стройки</em></h1>
+
+      <div class="offer">
+        <p class="lead" data-note="2">Пролёты от 15 до 42 метров. Не нужны разрешение на строительство и налог на имущество — ангар оформляется как движимое имущество.</p>
+        <div class="actions">
+          <a class="btn btn--l btn--white" href="#" data-note="3">Получить КП за 1 день
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a class="link" href="#">Отправить ТЗ на просчёт</a>
+        </div>
+        <p class="micro">Инженер подберёт конфигурацию и отопление и пришлёт предложение в течение рабочего дня</p>
+      </div>
+
+      <div class="clients" data-note="4">
+        <p>Команда завода строила объекты для</p>
+        <ul><li>Росатом</li><li>Газпром</li><li>Алроса</li><li>СберСити</li><li>Бюро 1440</li></ul>
+      </div>
+
+      <div class="facts" data-note="5">
+        <div class="fact"><div class="steps"><i class="on"></i><i></i><i></i><i></i></div><b>1200 м²</b><span>собственный цех: раскрой, сварка двойным швом, сборка</span></div>
+        <div class="fact"><div class="steps"><i></i><i class="on"></i><i></i><i></i></div><b>300+</b><span>объектов команды в России и за рубежом</span></div>
+        <div class="fact"><div class="steps"><i></i><i></i><i class="on"></i><i></i></div><b>10+ лет</b><span>опыт инженеров и сварочных бригад в отрасли</span></div>
+        <div class="fact"><div class="steps"><i></i><i></i><i></i><i class="on"></i></div><b>3 года</b><span>гарантия, срок службы по паспорту 15 лет</span></div>
+      </div>
+    </div>
+  </section>
+</div>
+</body>
+</html>
