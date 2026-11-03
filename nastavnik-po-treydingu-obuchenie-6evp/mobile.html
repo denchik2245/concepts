@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Илья Воронов — трейдинг 1 на 1, мобильная версия</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap&subset=cyrillic" rel="stylesheet">
+<style>
+  :root {
+    --accent: #c8a96b;
+    --accent-hover: #d9bd85;
+    --bg: #0b0b0c;
+    --surface: #141517;
+    --surface-2: #1b1c1f;
+    --text: #f4f2ee;
+    --text-2: rgba(244, 242, 238, .62);
+    --text-3: rgba(244, 242, 238, .40);
+    --border: rgba(244, 242, 238, .10);
+    --up: #8fbf8a;
+    --down: #c97a6b;
+    --font: "Inter Tight", sans-serif;
+    --mono: "JetBrains Mono", monospace;
+  }
+  * { box-sizing: border-box; }
+  html, body { width: 375px; margin: 0; overflow-x: hidden; }
+  body { background: var(--bg); color: var(--text); font: 400 16px/24px var(--font); -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+  h1, h2, h3, p { margin: 0; }
+
+  .page { position: relative; overflow: hidden; padding-bottom: 40px; }
+  .glow { position: absolute; width: 520px; height: 520px; left: -40px; top: 760px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(200,169,107,.16) 0%, rgba(200,169,107,0) 62%); }
+  .wrap { position: relative; padding: 0 20px; }
+
+  .header { position: relative; display: flex; align-items: center; justify-content: space-between; height: 64px; padding: 0 20px; border-bottom: 1px solid var(--border); }
+  .logo { display: flex; align-items: center; gap: 10px; }
+  .logo__mark { display: grid; place-items: center; width: 36px; height: 36px; border: 1px solid var(--accent); border-radius: 8px;
+    color: var(--accent); font: 500 14px/20px var(--mono); }
+  .logo__name { font-size: 16px; line-height: 20px; font-weight: 600; }
+  .logo__sub { font-size: 11px; line-height: 16px; color: var(--text-3); letter-spacing: .04em; }
+  .header__right { display: flex; align-items: center; gap: 8px; }
+  .icon-btn { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 12px; border: 1px solid var(--border); }
+  .icon-btn--gold { color: var(--accent); border-color: rgba(200,169,107,.5); }
+
+  .hero { padding-top: 32px; }
+  h1 { font-size: 34px; line-height: 40px; font-weight: 500; letter-spacing: -.025em; }
+  h1 span { color: var(--text-3); }
+  .lead { margin-top: 16px; font-size: 16px; line-height: 24px; color: var(--text-2); }
+  .btn { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; height: 56px; margin-top: 28px; border-radius: 12px;
+    background: var(--accent); color: #141210; font: 600 16px/24px var(--font); box-shadow: 0 16px 40px -16px rgba(200,169,107,.55); }
+  .micro { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 12px; font-size: 13px; line-height: 20px; color: var(--text-2); }
+  .micro i { width: 6px; height: 6px; border-radius: 50%; background: var(--up); }
+
+  .price { display: flex; align-items: baseline; justify-content: space-between; margin-top: 24px; padding: 16px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .price__value { font: 500 22px/28px var(--mono); }
+  .price__note { font-size: 13px; line-height: 20px; color: var(--text-3); text-align: right; }
+
+  .stats { display: grid; grid-template-columns: 1fr 1fr; margin-top: 8px; }
+  .stat { padding: 16px 12px 16px 0; border-bottom: 1px solid var(--border); }
+  .stat:nth-child(even) { padding-left: 16px; border-left: 1px solid var(--border); }
+  .stat__value { font: 500 28px/36px var(--mono); letter-spacing: -.02em; }
+  .stat__value small { font-size: 16px; color: var(--accent); margin-left: 4px; }
+  .stat__label { margin-top: 4px; font-size: 13px; line-height: 18px; color: var(--text-2); }
+
+  .photo { position: relative; margin-top: 32px; height: 440px; border-radius: 24px; overflow: hidden;
+    background: #121212 url(assets/mentor-m.jpg) center 15% / cover no-repeat; border: 1px solid var(--border); }
+  .photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11,11,12,0) 45%, rgba(11,11,12,.94) 100%); }
+  .photo__cap { position: absolute; z-index: 1; left: 20px; right: 20px; bottom: 60px; }
+  .photo__name { font-size: 20px; line-height: 28px; font-weight: 600; }
+  .photo__role { margin-top: 4px; font-size: 13px; line-height: 20px; color: var(--text-2); }
+
+  .journal { position: relative; margin: -40px 16px 0; padding: 20px; border-radius: 20px; z-index: 2;
+    background: rgba(22,23,25,.92); border: 1px solid rgba(244,242,238,.12); box-shadow: 0 24px 48px -20px rgba(0,0,0,.8); }
+  .journal__head { display: flex; justify-content: space-between; align-items: center; font: 400 11px/16px var(--mono); color: var(--text-3); letter-spacing: .04em; text-transform: uppercase; }
+  .journal__live { display: flex; align-items: center; gap: 6px; color: var(--up); }
+  .journal__live i { width: 6px; height: 6px; border-radius: 50%; background: var(--up); }
+  .journal__title { margin-top: 8px; font-size: 16px; line-height: 24px; font-weight: 500; }
+  .journal svg.curve { display: block; width: 100%; margin: 12px 0 8px; }
+  .rows { border-top: 1px solid var(--border); }
+  .row { display: flex; justify-content: space-between; align-items: center; height: 40px; border-bottom: 1px solid var(--border); font-size: 14px; line-height: 20px; color: var(--text-2); }
+  .row:last-child { border-bottom: 0; }
+  .row b { font: 500 14px/20px var(--mono); color: var(--text); }
+  .row b.gold { color: var(--accent); }
+
+  .more { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 28px; font-size: 15px; color: var(--text); }
+</style>
+</head>
+<body>
+<div class="page">
+  <div class="glow"></div>
+
+  <header class="header">
+    <a class="logo" href="#">
+      <span class="logo__mark">ИВ</span>
+      <span><span class="logo__name">Илья Воронов</span><br><span class="logo__sub">трейдинг один на один</span></span>
+    </a>
+    <div class="header__right">
+      <a class="icon-btn icon-btn--gold" href="#" aria-label="Telegram">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4z"/><path d="M22 2 11 13"/></svg>
+      </a>
+      <a class="icon-btn" href="#" aria-label="Меню">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </a>
+    </div>
+  </header>
+
+  <section class="hero wrap">
+    <h1>Индивидуальное обучение трейдингу. <span>Своя система под ваш капитал и график</span></h1>
+    <p class="lead">8 недель занятий один на один по видеосвязи. Разбираем ваши сделки, ставим риск-менеджмент и торговый план — без сигналов и обещаний доходности.</p>
+    <a class="btn" href="#">Записаться на вводную встречу</a>
+    <p class="micro"><i></i>45 минут, бесплатно: разберём опыт и цели</p>
+
+    <div class="price">
+      <div class="price__value">от 90 000 ₽</div>
+      <div class="price__note">за программу,<br>можно частями</div>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><div class="stat__value">9<small>лет</small></div><div class="stat__label">на бирже, из них 5 — наставником</div></div>
+      <div class="stat"><div class="stat__value">146</div><div class="stat__label">учеников прошли обучение 1:1</div></div>
+      <div class="stat"><div class="stat__value">6</div><div class="stat__label">новых учеников в месяц — не больше</div></div>
+      <div class="stat"><div class="stat__value">1:1</div><div class="stat__label">без групп и кураторов</div></div>
+    </div>
+
+    <div class="photo">
+      <div class="photo__cap">
+        <div class="photo__name">Илья Воронов</div>
+        <div class="photo__role">Частный трейдер с 2016 года, фондовый и срочный рынок Мосбиржи</div>
+      </div>
+    </div>
+    <div class="journal">
+      <div class="journal__head"><span>Журнал ученика</span><span class="journal__live"><i></i>неделя 6</span></div>
+      <div class="journal__title">Кривая капитала по плану</div>
+      <svg class="curve" height="64" viewBox="0 0 248 72" preserveAspectRatio="none" fill="none">
+        <defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#c8a96b" stop-opacity=".28"/><stop offset="1" stop-color="#c8a96b" stop-opacity="0"/></linearGradient></defs>
+        <path d="M0 60 L18 56 L34 58 L50 50 L66 52 L82 44 L98 46 L114 40 L130 42 L146 34 L162 36 L178 28 L194 30 L210 22 L228 20 L248 12 L248 72 L0 72 Z" fill="url(#g)"/>
+        <path d="M0 60 L18 56 L34 58 L50 50 L66 52 L82 44 L98 46 L114 40 L130 42 L146 34 L162 36 L178 28 L194 30 L210 22 L228 20 L248 12" stroke="#c8a96b" stroke-width="2" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>
+      </svg>
+      <div class="rows">
+        <div class="row">Риск на сделку<b class="gold">1,0%</b></div>
+        <div class="row">Сделки по плану<b>31 из 34</b></div>
+        <div class="row">Макс. просадка<b>−4,2%</b></div>
+      </div>
+    </div>
+
+    <a class="more" href="#">Смотреть программу по неделям
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg>
+    </a>
+  </section>
+</div>
+</body>
+</html>
