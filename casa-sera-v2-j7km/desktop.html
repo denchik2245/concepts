@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Casa Sera — Private Travel &amp; Events</title>
+<style>
+@font-face{font-family:"Golos Text";src:url("assets/golos-text.woff2") format("woff2");font-style:normal;font-weight:400 600;font-display:swap}
+:root{--paper:#f4f0e8;--ink:#162820;--light:#fffdf7;--soft:#e4e7de;--line:#f4f0e86e;--body:"Golos Text",Arial,sans-serif}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 16px/24px var(--body);-webkit-font-smoothing:antialiased}
+h1,h2,p{margin:0}
+a,button{color:inherit}
+a{text-decoration:none}
+button{font:inherit}
+button[popovertarget]{cursor:pointer}
+a:focus-visible,button:focus-visible{outline:2px solid currentColor;outline-offset:5px}
+.hero{position:relative;isolation:isolate;background:#293731;color:var(--light)}
+.hero-image,.hero::after{position:absolute;inset:0;width:100%;height:100%;z-index:-1}
+.hero-image{object-fit:cover;filter:saturate(.62) sepia(.12)}
+.hero::after{content:"";pointer-events:none}
+.wrap{position:relative}
+.header{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}
+.logo{font-weight:600;white-space:nowrap;letter-spacing:3px}
+.hero-title{font-weight:500}
+.hero-title .promise{display:block;color:var(--soft)}
+.hero-foot{border-top:1px solid var(--line)}
+.location{display:flex;align-items:center;gap:12px;color:var(--soft);font-size:12px;line-height:20px;letter-spacing:1.2px;text-transform:uppercase}
+.location::before{content:"";width:6px;height:6px;border-radius:50%;background:#c8c9a1;flex:none}
+.action{display:inline-flex;align-items:center;justify-content:space-between;gap:24px;border:0;border-radius:100px;padding:0 24px;background:var(--paper);color:var(--ink);font-weight:500;white-space:nowrap}
+.action:hover{background:#e2e5d8}
+.arrow{flex:none}
+.index-title{font-weight:500}
+.service{display:grid;text-align:left;align-content:center;grid-template-columns:1fr auto;border:0;background:none;color:var(--ink)}
+.service:hover .service-name{text-decoration:underline;text-underline-offset:4px}
+.service-no{grid-column:1/-1;font-size:11px;letter-spacing:1px;color:#4b6055}
+.service-name{font-weight:500;letter-spacing:-.5px}
+[popover]{width:calc(100% - 40px);max-width:480px;padding:32px;border:1px solid #b8bdb1;background:var(--paper);color:var(--ink)}
+[popover]::backdrop{background:#15211db3}
+[popover] h2{margin:12px 0;font-size:30px;line-height:36px;font-weight:500}
+.close{float:right;border:1px solid #b8bdb1;background:none;padding:8px 12px}
+
+html,body{width:1920px;min-height:1080px}
+.wrap{width:1680px;margin:0 auto}
+.hero{height:848px}
+.hero-image{object-position:center 19%}
+.hero::after{background:linear-gradient(180deg,#101b19b8 0px,#101b199e 320px,#101b1930 505px,#101b19ab 640px,#101b19d9 848px),linear-gradient(90deg,#101b1950 0px,#101b1900 1260px)}
+.header{height:80px;display:grid;grid-template-columns:300px 1fr 300px}
+.logo{justify-self:start;font-size:24px;line-height:28px}
+.nav{display:flex;justify-content:center;gap:40px}
+.nav button,.header-inquiry{background:none;border:0;padding:10px 0;font-size:15px}
+.nav button:hover,.header-inquiry:hover{text-decoration:underline;text-underline-offset:4px}
+.header-inquiry{justify-self:end;display:flex;align-items:center;gap:10px}
+.hero-title{margin-top:52px;font-size:80px;line-height:84px;letter-spacing:-4.4px;width:max-content}
+.mobile-break{display:none}
+.hero-foot{display:grid;grid-template-columns:1fr 544px;align-items:end;position:absolute;bottom:44px;left:0;width:1680px;padding-top:28px}
+.hero .wrap{height:848px}
+.lead{max-width:520px;font-size:20px;line-height:30px;text-wrap:balance}
+.action{height:56px;margin-top:24px}
+.service-index{display:grid;grid-template-columns:408px 1fr;gap:32px;padding:40px 0}
+.index-title{max-width:300px;font-size:44px;line-height:46px;letter-spacing:-2px}
+.service-links{display:grid;grid-template-columns:repeat(4,1fr);align-items:start}
+.service{min-height:104px;gap:12px;padding:12px 20px;border-left:1px solid #c3c9bc}
+.service-name{font-size:26px;line-height:32px}
+.service .arrow{align-self:center}
+</style>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <img class="hero-image" src="assets/villa.jpg" alt="Historic Villa del Balbianello on the shore of Lake Como">
+      <div class="wrap">
+        <header class="header">
+          <a class="logo" href="./desktop.html" aria-label="Casa Sera home">CASA SERA</a>
+          <nav class="nav" aria-label="Main navigation"><button type="button" popovertarget="travel">Travel</button><button type="button" popovertarget="concierge">Concierge</button><button type="button" popovertarget="events">Events</button><button type="button" popovertarget="lifestyle">Lifestyle</button></nav><button class="header-inquiry" type="button" popovertarget="inquire">Inquire <svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 18 18 6M8 6h10v10"/></svg></button>
+        </header>
+        <h1 class="hero-title" data-note="1">Private travel <br class="mobile-break">&amp; events.<span class="promise">Every detail, <br class="mobile-break">taken care of.</span></h1>
+        <div class="hero-foot">
+          <p class="location" data-note="2">Villa del Balbianello · Lake Como</p>
+          <div class="inquiry">
+            <p class="lead">Tailored itineraries, private events and personal concierge, arranged around you.</p>
+            <button class="action btn" type="button" popovertarget="inquire" data-note="3">Make a private inquiry <svg class="arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="service-index wrap" aria-labelledby="service-heading"><h2 id="service-heading" class="index-title">Explore our services</h2><div class="service-links" data-note="4"><button class="service" type="button" popovertarget="travel"><span class="service-no">01</span><span class="service-name">Travel</span><svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 18 18 6M8 6h10v10"/></svg></button><button class="service" type="button" popovertarget="concierge"><span class="service-no">02</span><span class="service-name">Concierge</span><svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 18 18 6M8 6h10v10"/></svg></button><button class="service" type="button" popovertarget="events"><span class="service-no">03</span><span class="service-name">Events</span><svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 18 18 6M8 6h10v10"/></svg></button><button class="service" type="button" popovertarget="lifestyle"><span class="service-no">04</span><span class="service-name">Lifestyle</span><svg class="arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 18 18 6M8 6h10v10"/></svg></button></div></section>
+  </main>
+  
+  <section id="travel" popover aria-label="Travel"><button type="button" class="close" popovertarget="travel" popovertargetaction="hide" aria-label="Close">×</button><h2>Travel</h2><p>Private itineraries shaped around the places, people and pace you enjoy.</p></section>
+  <section id="concierge" popover aria-label="Concierge"><button type="button" class="close" popovertarget="concierge" popovertargetaction="hide" aria-label="Close">×</button><h2>Concierge</h2><p>Personal assistance with the reservations, arrangements and details that make your time your own.</p></section>
+  <section id="events" popover aria-label="Events"><button type="button" class="close" popovertarget="events" popovertargetaction="hide" aria-label="Close">×</button><h2>Events</h2><p>Private celebrations planned around the people you want to bring together.</p></section>
+  <section id="lifestyle" popover aria-label="Lifestyle"><button type="button" class="close" popovertarget="lifestyle" popovertargetaction="hide" aria-label="Close">×</button><h2>Lifestyle</h2><p>Considered recommendations for dining, culture and occasions worth making time for.</p></section>
+  <section id="inquire" popover aria-label="Private inquiry"><button type="button" class="close" popovertarget="inquire" popovertargetaction="hide" aria-label="Close">×</button><h2>Private inquiry</h2><p>Tell us what you have in mind. We’ll start with the details that matter to you.</p></section>
+</body>
+</html>
+
