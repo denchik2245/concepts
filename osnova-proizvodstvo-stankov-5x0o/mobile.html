@@ -1,0 +1,45 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Основа — мобильная версия</title><style>@font-face {
+  font-family: 'Golos Text';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url(assets/font-0.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Golos Text';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(assets/font-1.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Golos Text';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(assets/font-2.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Oswald';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url(assets/font-3.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Oswald';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url(assets/font-4.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Oswald';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url(assets/font-5.ttf) format('truetype');
+}
+
+:root{--bg:#f7f7f4;--surface:#fff;--ink:#222520;--muted:#62665e;--line:#d9dbd4;--accent:#ddf267;--font:'Golos Text',sans-serif;--display:'Oswald',sans-serif}
+*{box-sizing:border-box}html,body{margin:0;overflow-x:hidden}body{background:var(--bg);color:var(--ink);font:400 16px/24px var(--font);-webkit-font-smoothing:antialiased}a{color:inherit;text-decoration:none}h1,h2,p{margin:0}button{font:inherit}svg{flex-shrink:0}.brand{display:flex;align-items:center;gap:12px}.brand b{display:block;text-transform:uppercase;font:600 32px/36px var(--display);letter-spacing:1px}.brand small{display:block;font:500 10px/16px var(--font);text-transform:uppercase;letter-spacing:2px}.primary{display:flex;align-items:center;justify-content:space-between;background:var(--ink);color:white;font-weight:500;border-radius:12px}.secondary{display:inline-flex;align-items:center;gap:12px;font-weight:500}.micro{font-size:12px;line-height:20px;color:var(--muted)}h1{font-family:var(--display);font-weight:500;text-transform:uppercase;letter-spacing:-1px}.photo{position:relative;overflow:hidden;background:#272f30}.photo img{position:absolute;display:block;object-fit:cover}.photo:after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 20px,rgba(10,18,17,.04) 160px,rgba(10,18,17,.8))}.photo-word{position:absolute;z-index:1;font-family:var(--display);font-weight:600;text-transform:uppercase;color:#f7f7f4;white-space:nowrap}.cross{position:absolute;width:24px;height:24px;z-index:2}.cross:before,.cross:after{content:'';position:absolute;background:rgba(255,255,255,.65)}.cross:before{width:24px;height:1px;top:12px}.cross:after{width:1px;height:24px;left:12px}.feature small{color:var(--muted);font-size:12px;line-height:20px}.feature strong{display:block;font-weight:500;font-size:20px;line-height:28px}.feature p{color:var(--muted);font-size:14px;line-height:20px}html,body{width:375px}.wrap{padding:0 20px}.header{height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 20px;border-bottom:1px solid var(--line)}.brand{gap:8px}.mark{width:28px;height:28px}.brand b{font-size:24px;line-height:28px}.brand small{font-size:8px;line-height:12px;letter-spacing:1px}.tools{display:flex;align-items:center;gap:8px}.icon{display:grid;place-items:center;width:40px;height:40px;border:1px solid var(--line);border-radius:12px}.intro{padding-top:24px}h1{font-size:40px;line-height:48px;letter-spacing:-1px}.lead{font-size:16px;line-height:24px;color:var(--muted);margin-top:16px}.primary{width:335px;height:56px;padding:0 20px;font-size:16px;margin-top:24px}.secondary{font-size:14px;line-height:24px;margin-top:16px}.secondary svg{width:20px;height:20px}.micro{margin-top:16px;padding-top:16px;border-top:1px solid var(--line)}.micro span{display:block;font-size:14px;line-height:24px;color:var(--ink)}.features{padding-top:24px;display:grid;grid-template-columns:159px 160px;gap:20px 16px}.feature:first-child{grid-column:1 / 3;display:flex;align-items:center;gap:16px;padding-bottom:16px;border-bottom:1px solid var(--line)}.feature:first-child strong{font-size:20px;line-height:28px;width:159px}.feature:first-child p{width:160px}.feature strong{font-size:16px;line-height:24px;margin-bottom:4px}.feature p{font-size:12px;line-height:20px}.feature small{display:none}.photo{margin:24px 12px 12px;width:351px;height:304px;border-radius:24px}.photo img{width:524px;height:304px;left:-56px;top:0}.photo-word{left:20px;bottom:24px;font-size:40px;line-height:48px;letter-spacing:-1px}.photo-label{position:absolute;z-index:1;top:20px;left:20px;color:white;font-size:10px;line-height:16px;letter-spacing:1px;text-transform:uppercase}.photo-label i{display:inline-block;width:4px;height:4px;background:var(--accent);margin-right:8px}.cross{right:20px;top:20px}.hero{min-height:748px;padding-bottom:8px}.feature:first-child{display:block}.feature:first-child strong{width:335px}.feature:first-child p{width:335px}</style></head><body><header class="header"><a class="brand" href="#"><svg class="mark" width="40" height="40" viewBox="0 0 40 40" fill="none"><path fill="currentColor" fill-rule="evenodd" d="M0 0h40v40H0V0Zm9 9v22h22V9H9Z"/><path stroke="currentColor" stroke-width="4" d="m4 36 32-32M20 0v10M20 30v10M0 20h10M30 20h10"/></svg><span><b>Основа</b><small>Станкостроение</small></span></a><div class="tools"><a class="icon" href="#" aria-label="Связаться"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.4 8.4 0 0 1 3.8-.9h.5a8.5 8.5 0 0 1 8 8v.5Z"/></svg></a><a class="icon" href="#" aria-label="Меню"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 8h16M4 16h16"/></svg></a></div></header><main class="hero"><div class="intro wrap"><h1>Станки для вашего производства</h1><p class="lead">Сравните оборудование по характеристикам. Выберите модель или оставьте заявку на подбор.</p><a class="primary" href="#">Смотреть каталог <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 12h15M13 5l7 7-7 7"/></svg></a><a class="secondary" href="#">Помочь с выбором <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 19 19 5M5 5h14v14"/></svg></a><p class="micro"><span>Стоимость — по запросу</span>Обсудим модель и комплектацию</p><div class="features"><div class="feature"><small>Производство</small><strong>Напрямую от производителя</strong><p>Оборудование для вашего бизнеса</p></div><div class="feature"><small>Каталог</small><strong>Всё для выбора</strong><p>Фотографии, описания и характеристики</p></div><div class="feature"><small>Обратная связь</small><strong>Заявка на оборудование</strong><p>Обсудите модель и условия заказа</p></div></div></div><div class="photo" ><img src="assets/milling.jpg" alt="Крупный план обработки металла на фрезерном станке"><div class=""><span class="photo-label"><i></i>Оборудование в работе</span><div class="photo-word">Точность в деле.</div></div><i class="cross cross-a"></i></div></main></body></html>
