@@ -46,9 +46,9 @@
   .lead { margin-top: 16px; font-size: 16px; line-height: 24px; color: var(--text-2); }
   .lead b { color: var(--text); font-weight: 500; }
 
-  .price { display: flex; align-items: baseline; justify-content: space-between; margin-top: 24px; padding: 16px 0; border-top: 1px solid var(--border); }
+  .price { display: flex; flex-direction: column; gap: 4px; margin-top: 24px; padding: 16px 0; border-top: 1px solid var(--border); }
   .price strong { font-size: 32px; line-height: 40px; font-weight: 500; letter-spacing: -.03em; white-space: nowrap; }
-  .price span { font-size: 13px; line-height: 18px; color: var(--text-3); text-align: right; }
+  .price span { font-size: 13px; line-height: 18px; color: var(--text-3); }
   .btn { display: flex; align-items: center; justify-content: space-between; width: 100%; height: 56px; padding: 0 20px; border-radius: 12px; background: var(--accent); color: var(--on-accent); font: 600 16px/24px var(--font); box-shadow: 0 12px 32px rgba(242,182,95,.2); }
   .micro { margin-top: 10px; font-size: 13px; line-height: 20px; color: var(--text-3); text-align: center; }
 
@@ -80,7 +80,7 @@
   <section class="hero wrap">
     <h1>Новый год<br>в своём доме,<br><span>где всё уже готово</span></h1>
     <p class="lead"><b>286 м², 18 соток, 24 км по Новой Риге.</b> Въезжаете с чемоданами и ставите ёлку.</p>
-    <div class="price"><strong>42 000 000 ₽</strong><span>с мебелью<br>и техникой</span></div>
+    <div class="price"><strong>42 000 000 ₽</strong><span>с мебелью и техникой</span></div>
     <a class="btn" href="#">Приехать вечером на просмотр
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
     </a>

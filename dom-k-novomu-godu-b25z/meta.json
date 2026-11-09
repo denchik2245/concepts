@@ -47,9 +47,9 @@
       "side": "right",
       "box": {
         "x": 1176,
-        "y": 832,
+        "y": 824,
         "w": 384,
-        "h": 84
+        "h": 93
       }
     },
     {
@@ -59,7 +59,7 @@
       "side": "right",
       "box": {
         "x": 1176,
-        "y": 940,
+        "y": 941,
         "w": 384,
         "h": 64
       }
@@ -76,7 +76,7 @@
       "file": "mobile.html",
       "png": "mobile.png",
       "jpg": "mobile.jpg",
-      "height": 1002
+      "height": 1011
     }
   }
 }
