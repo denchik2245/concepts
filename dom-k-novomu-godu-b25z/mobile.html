@@ -2,21 +2,21 @@
 <html lang="ru">
 <head>
 <meta charset="utf-8">
-<title>Ельники, 7 — первый экран, мобильная версия</title>
+<title>Ельники 7 — первый экран, мобильная версия</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Golos+Text:wght@400;500;600&display=swap&subset=cyrillic" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&display=swap&subset=cyrillic" rel="stylesheet">
 <style>
   :root {
-    --accent: #e8b46c;
-    --on-accent: #1b1308;
-    --bg: #0c1420;
-    --text: #f3ece1;
-    --text-2: rgba(243, 236, 225, .68);
-    --text-3: rgba(243, 236, 225, .48);
-    --border: rgba(243, 236, 225, .14);
-    --serif: "Cormorant Garamond", serif;
-    --font: "Golos Text", sans-serif;
+    --accent: #f2b65f;
+    --on-accent: #17110a;
+    --bg: #0a0d12;
+    --text: #f5f2ec;
+    --text-2: rgba(245, 242, 236, .64);
+    --text-3: rgba(245, 242, 236, .44);
+    --border: rgba(245, 242, 236, .14);
+    --glass: rgba(10, 13, 18, .5);
+    --font: "Inter Tight", sans-serif;
   }
   * { box-sizing: border-box; }
   html, body { width: 375px; margin: 0; overflow-x: hidden; }
@@ -26,43 +26,42 @@
   .wrap { padding: 0 20px; }
 
   .header { display: flex; align-items: center; justify-content: space-between; height: 64px; padding: 0 20px; }
-  .logo { display: flex; flex-direction: column; font: 600 22px/24px var(--serif); }
-  .logo small { margin-top: 2px; font: 500 9px/12px var(--font); letter-spacing: .16em; text-transform: uppercase; color: var(--text-3); }
+  .logo { display: flex; align-items: center; gap: 10px; font-size: 16px; line-height: 24px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; }
+  .logo i { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 8px; background: var(--accent); color: var(--on-accent); font-style: normal; font-size: 14px; letter-spacing: 0; }
   .header__right { display: flex; gap: 8px; }
   .icon-btn { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 12px; border: 1px solid var(--border); }
 
-  .photo { position: relative; height: 288px; background: url(assets/hero-m.jpg) 50% 50% / cover no-repeat; }
-  .photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(12,20,32,.35) 0, rgba(12,20,32,0) 24%, rgba(12,20,32,0) 64%, #0c1420 100%); }
-  .caption { position: absolute; left: 20px; bottom: 16px; z-index: 1; display: flex; align-items: center; gap: 8px; padding: 6px 12px 6px 10px; border-radius: 10px; background: rgba(12,20,32,.6); font-size: 12px; line-height: 16px; }
-  .caption::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 3px rgba(232,180,108,.22); }
-  .caption span { color: var(--text-2); }
+  .photo { position: relative; margin: 0 12px; height: 320px; border-radius: 24px; overflow: hidden; background: url(assets/hero-m.jpg) 42% 60% / cover no-repeat; }
+  .photo::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,13,18,0) 55%, rgba(10,13,18,.6) 100%); }
+  .chip { position: absolute; z-index: 1; display: inline-flex; align-items: center; gap: 8px; height: 32px; padding: 0 12px 0 10px; border-radius: 999px; background: var(--glass); backdrop-filter: blur(12px); font-size: 12px; line-height: 16px; }
+  .chip span { color: var(--text-2); }
+  .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 3px rgba(242,182,95,.25); }
+  .caption { left: 12px; bottom: 12px; }
+  .countdown { left: 12px; top: 12px; padding-left: 4px; }
+  .countdown b { display: grid; place-items: center; height: 24px; padding: 0 8px; border-radius: 999px; background: var(--accent); color: var(--on-accent); font-weight: 600; }
 
-  .hero { padding-top: 16px; }
-  h1 { font: 500 44px/44px var(--serif); letter-spacing: -.01em; }
-  h1 em { font-style: italic; color: var(--accent); }
+  .hero { padding-top: 28px; }
+  h1 { font-size: 40px; line-height: 42px; font-weight: 500; letter-spacing: -.045em; }
+  h1 span { color: rgba(245,242,236,.5); }
   .lead { margin-top: 16px; font-size: 16px; line-height: 24px; color: var(--text-2); }
   .lead b { color: var(--text); font-weight: 500; }
-  .countdown { display: flex; align-items: center; gap: 10px; margin-top: 20px; font-size: 13px; line-height: 20px; color: var(--text-2); }
-  .countdown span { flex: none; display: grid; place-items: center; height: 28px; padding: 0 10px; border-radius: 999px; background: rgba(232,180,108,.14); color: var(--accent); font-weight: 600; }
-  .btn { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; height: 56px; margin-top: 20px; border-radius: 12px; background: var(--accent); color: var(--on-accent); font: 600 16px/24px var(--font); box-shadow: 0 12px 32px rgba(232,180,108,.2); }
+
+  .price { display: flex; align-items: baseline; justify-content: space-between; margin-top: 24px; padding: 16px 0; border-top: 1px solid var(--border); }
+  .price strong { font-size: 32px; line-height: 40px; font-weight: 500; letter-spacing: -.03em; white-space: nowrap; }
+  .price span { font-size: 13px; line-height: 18px; color: var(--text-3); text-align: right; }
+  .btn { display: flex; align-items: center; justify-content: space-between; width: 100%; height: 56px; padding: 0 20px; border-radius: 12px; background: var(--accent); color: var(--on-accent); font: 600 16px/24px var(--font); box-shadow: 0 12px 32px rgba(242,182,95,.2); }
   .micro { margin-top: 10px; font-size: 13px; line-height: 20px; color: var(--text-3); text-align: center; }
 
-  .price { display: flex; align-items: baseline; justify-content: space-between; margin-top: 24px; padding: 16px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
-  .price strong { font: 600 32px/36px var(--serif); white-space: nowrap; }
-  .price span { font-size: 13px; line-height: 20px; color: var(--text-3); text-align: right; }
-
-  .ready { padding-top: 28px; padding-bottom: 40px; }
-  .ready h3 { font: 600 24px/28px var(--serif); }
-  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 16px; }
-  .item { padding: 16px; border: 1px solid var(--border); border-radius: 16px; background: rgba(243,236,225,.03); }
-  .item svg { color: var(--accent); }
-  .item b { display: block; margin-top: 12px; font-weight: 500; font-size: 15px; line-height: 20px; }
-  .item span { display: block; margin-top: 4px; font-size: 13px; line-height: 18px; color: var(--text-3); }
+  .ready { padding-top: 32px; padding-bottom: 40px; }
+  .ready h3 { font-size: 20px; line-height: 28px; font-weight: 500; letter-spacing: -.02em; }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+  .tag { display: inline-flex; align-items: center; gap: 8px; height: 40px; padding: 0 14px 0 12px; border-radius: 999px; border: 1px solid var(--border); font-size: 14px; }
+  .tag svg { color: var(--accent); }
 </style>
 </head>
 <body>
   <header class="header">
-    <a class="logo" href="#">Ельники, 7<small>Дом на Новой Риге</small></a>
+    <a class="logo" href="#"><i>7</i>Ельники</a>
     <div class="header__right">
       <a class="icon-btn" href="#" aria-label="Позвонить">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
@@ -74,37 +73,27 @@
   </header>
 
   <div class="photo">
-    <div class="caption">Этот дом, 31 декабря 2025 <span>· 17:40</span></div>
+    <div class="chip countdown"><b>52 дня</b>до 31 декабря · переезд за 14</div>
+    <div class="chip caption"><i class="dot"></i>Этот дом, 31 декабря 2025 <span>· 17:40</span></div>
   </div>
 
   <section class="hero wrap">
-    <h1>Новый год<br><em>в своём доме,</em><br>где всё уже готово</h1>
-    <p class="lead"><b>286 м² на участке 18 соток, 24&nbsp;км&nbsp;от&nbsp;МКАД.</b> С мебелью, техникой, садом и баней. Въезжаете с чемоданами и ставите ёлку в гостиной.</p>
-    <div class="countdown"><span>52 дня</span>до 31 декабря · сделка и переезд — 14</div>
-    <a class="btn" href="#">Приехать вечером на просмотр</a>
-    <p class="micro">В 17:00, когда горят окна. Трансфер из Москвы</p>
+    <h1>Новый год<br>в своём доме,<br><span>где всё уже готово</span></h1>
+    <p class="lead"><b>286 м², 18 соток, 24 км по Новой Риге.</b> Въезжаете с чемоданами и ставите ёлку.</p>
     <div class="price"><strong>42 000 000 ₽</strong><span>с мебелью<br>и техникой</span></div>
+    <a class="btn" href="#">Приехать вечером на просмотр
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+    </a>
+    <p class="micro">В 17:00, когда горят окна. Трансфер из Москвы</p>
   </section>
 
   <section class="ready wrap">
-    <h3>Что уже готово</h3>
-    <div class="grid">
-      <div class="item">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v3"/><path d="M2 16a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-5a2 2 0 0 0-4 0v1.5a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5V11a2 2 0 0 0-4 0z"/><path d="M4 18v2M20 18v2"/></svg>
-        <b>Мебель и техника</b><span>по проекту бюро</span>
-      </div>
-      <div class="item">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22v-6"/><path d="m17 14-5-5-5 5h3l-4 4h12l-4-4z"/><path d="m15 7-3-3-3 3"/></svg>
-        <b>Сад и 40 сосен</b><span>газон, свет, дорожки</span>
-      </div>
-      <div class="item">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3q1 4 4 6.5t3 5.5a7 7 0 0 1-14 0q0-3 3-5.5T12 3z"/><path d="M12 13q-2 2-2 4a2 2 0 0 0 4 0q0-2-2-4z"/></svg>
-        <b>Камин и баня</b><span>терраса с купелью</span>
-      </div>
-      <div class="item">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V9l9-6 9 6v12"/><path d="M7 21v-8h10v8"/><path d="M7 17h10"/></svg>
-        <b>Гараж на 2 машины</b><span>тёплый, с зарядкой</span>
-      </div>
+    <h3>Уже готово</h3>
+    <div class="tags">
+      <span class="tag"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v3"/><path d="M2 16a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-5a2 2 0 0 0-4 0v1.5a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5V11a2 2 0 0 0-4 0z"/></svg>Мебель и техника</span>
+      <span class="tag"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22v-6"/><path d="m17 14-5-5-5 5h3l-4 4h12l-4-4z"/></svg>Сад и 40 сосен</span>
+      <span class="tag"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3q1 4 4 6.5t3 5.5a7 7 0 0 1-14 0q0-3 3-5.5T12 3z"/></svg>Камин и баня</span>
+      <span class="tag"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V9l9-6 9 6v12"/><path d="M7 21v-8h10v8"/></svg>Гараж на 2 машины</span>
     </div>
   </section>
 </body>
