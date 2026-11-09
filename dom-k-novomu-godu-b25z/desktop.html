@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Ельники, 7 — первый экран</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Golos+Text:wght@400;500;600&display=swap&subset=cyrillic" rel="stylesheet">
+<style>
+  :root {
+    --accent: #e8b46c;
+    --accent-hover: #f0c384;
+    --on-accent: #1b1308;
+    --bg: #0c1420;
+    --surface: #131d2b;
+    --text: #f3ece1;
+    --text-2: rgba(243, 236, 225, .68);
+    --text-3: rgba(243, 236, 225, .48);
+    --border: rgba(243, 236, 225, .14);
+    --serif: "Cormorant Garamond", serif;
+    --font: "Golos Text", sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html, body { width: 1920px; margin: 0; overflow-x: hidden; }
+  body { background: var(--bg); color: var(--text); font: 400 16px/24px var(--font); -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+  h1, h2, h3, p { margin: 0; }
+
+  .screen { position: relative; height: 1080px; overflow: hidden; }
+  .photo { position: absolute; top: 0; right: 0; width: 1240px; height: 1080px; background: url(assets/hero.jpg) 100% 50% / cover no-repeat; }
+  .photo::after { content: ""; position: absolute; inset: 0;
+    background:
+      linear-gradient(90deg, #0c1420 0, rgba(12,20,32,.94) 16%, rgba(12,20,32,.72) 34%, rgba(12,20,32,0) 62%),
+      linear-gradient(180deg, rgba(12,20,32,.55) 0, rgba(12,20,32,0) 18%, rgba(12,20,32,0) 62%, rgba(12,20,32,.9) 86%, #0c1420 100%); }
+  .container { position: relative; width: 1200px; margin: 0 auto; }
+
+  /* Шапка */
+  .header { position: relative; height: 104px; z-index: 2; }
+  .header .container { display: flex; align-items: center; height: 100%; gap: 56px; }
+  .logo { display: flex; flex-direction: column; font: 600 28px/28px var(--serif); letter-spacing: .02em; }
+  .logo small { margin-top: 4px; font: 500 11px/16px var(--font); letter-spacing: .16em; text-transform: uppercase; color: var(--text-3); }
+  .menu { display: flex; gap: 32px; font-size: 15px; line-height: 24px; color: var(--text-2); }
+  .header__right { display: flex; align-items: center; gap: 28px; margin-left: auto; }
+  .phone { font-weight: 500; text-shadow: 0 1px 12px rgba(0,0,0,.4); }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 12px; border-radius: 12px; font: 500 16px/24px var(--font); white-space: nowrap; }
+  .btn--m { height: 48px; padding: 0 24px; border: 1px solid rgba(243,236,225,.4); background: rgba(12,20,32,.28); backdrop-filter: blur(8px); }
+  .btn--l { height: 64px; padding: 0 32px; font-size: 18px; font-weight: 600; background: var(--accent); color: var(--on-accent); box-shadow: 0 16px 48px rgba(232,180,108,.22); }
+
+  /* Оффер */
+  .offer { padding-top: 104px; width: 690px; }
+  h1 { font: 500 88px/88px var(--serif); letter-spacing: -.01em; }
+  h1 em { font-style: italic; color: var(--accent); }
+  .lead { margin-top: 32px; width: 548px; font-size: 20px; line-height: 32px; color: var(--text-2); }
+  .lead b { color: var(--text); font-weight: 500; }
+
+  .countdown { display: inline-flex; align-items: center; gap: 12px; margin-top: 32px; padding: 8px 16px 8px 8px; border: 1px solid var(--border); border-radius: 999px; font-size: 15px; line-height: 24px; color: var(--text-2); }
+  .countdown span { display: grid; place-items: center; height: 32px; padding: 0 12px; border-radius: 999px; background: rgba(232,180,108,.14); color: var(--accent); font-weight: 600; }
+
+  .action { display: flex; align-items: center; gap: 40px; margin-top: 40px; }
+  .cta { display: flex; flex-direction: column; gap: 12px; }
+  .micro { font-size: 14px; line-height: 20px; color: var(--text-3); }
+  .price { padding-left: 40px; border-left: 1px solid var(--border); align-self: flex-start; }
+  .price strong { display: block; font: 600 40px/48px var(--serif); white-space: nowrap; }
+  .price span { display: block; margin-top: 4px; font-size: 14px; line-height: 20px; color: var(--text-3); }
+
+  .video { display: inline-flex; align-items: center; gap: 16px; margin-top: 32px; font-size: 15px; line-height: 20px; color: var(--text-2); }
+  .video i { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; border: 1px solid rgba(243,236,225,.32); color: var(--text); font-style: normal; }
+  .video b { display: block; color: var(--text); font-weight: 500; }
+
+  /* Подпись к фото */
+  .caption { position: absolute; left: 1296px; top: 600px; display: flex; align-items: center; gap: 12px; padding: 10px 16px 10px 12px; border-radius: 12px; background: rgba(12,20,32,.5); backdrop-filter: blur(10px); font-size: 14px; line-height: 20px; color: var(--text); }
+  .caption::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 4px rgba(232,180,108,.22); }
+  .caption span { color: var(--text-2); }
+
+  /* Что уже готово */
+  .ready { position: absolute; left: 50%; bottom: 48px; width: 1200px; margin-left: -600px; display: grid; grid-template-columns: 180px repeat(4, 1fr); align-items: center; gap: 0; padding: 28px 0; border-top: 1px solid var(--border); }
+  .ready h3 { font: 600 24px/28px var(--serif); color: var(--text); }
+  .ready__item { display: flex; gap: 16px; padding: 0 24px; border-left: 1px solid var(--border); }
+  .ready__item svg { flex: none; color: var(--accent); }
+  .ready__item b { display: block; font-weight: 500; font-size: 16px; line-height: 24px; }
+  .ready__item span { display: block; font-size: 14px; line-height: 20px; color: var(--text-3); }
+</style>
+</head>
+<body>
+  <section class="screen">
+    <div class="photo"></div>
+
+    <header class="header">
+      <div class="container">
+        <a class="logo" href="#">Ельники, 7<small>Дом на Новой Риге</small></a>
+        <nav class="menu">
+          <a href="#">Дом</a><a href="#">Интерьеры</a><a href="#">Участок и сад</a><a href="#">Как добраться</a><a href="#">Покупка</a>
+        </nav>
+        <div class="header__right">
+          <a class="phone" href="#">+7 495 120-46-07</a>
+          <a class="btn btn--m" href="#">Видеотур</a>
+        </div>
+      </div>
+    </header>
+
+    <div class="container">
+      <div class="offer">
+        <h1 data-note="1">Новый год<br><em>в своём доме,</em><br>где всё уже готово</h1>
+        <p class="lead"><b>286 м² на участке 18 соток, 24 км от МКАД.</b> С мебелью, техникой, садом и баней. Въезжаете с чемоданами и ставите ёлку в гостиной.</p>
+
+        <div class="countdown"><span>52 дня</span>до 31 декабря · сделка и переезд занимают 14</div>
+
+        <div class="action">
+          <div class="cta">
+            <a class="btn btn--l" href="#" data-note="3">Приехать вечером на просмотр
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+            <p class="micro">В 17:00, когда загораются окна. Трансфер из Москвы</p>
+          </div>
+          <div class="price" data-note="4">
+            <strong>42 000 000 ₽</strong>
+            <span>с мебелью и техникой</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="caption" data-note="2">Этот дом, 31 декабря 2025 <span>· 17:40</span></div>
+
+    <div class="ready" data-note="5">
+      <h3>Что уже готово</h3>
+      <div class="ready__item">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v3"/><path d="M2 16a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-5a2 2 0 0 0-4 0v1.5a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5V11a2 2 0 0 0-4 0z"/><path d="M4 18v2M20 18v2"/></svg>
+        <div><b>Мебель и техника</b><span>по проекту бюро</span></div>
+      </div>
+      <div class="ready__item">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22v-6"/><path d="m17 14-5-5-5 5h3l-4 4h12l-4-4z"/><path d="m15 7-3-3-3 3"/></svg>
+        <div><b>Сад и 40 сосен</b><span>газон, свет, дорожки</span></div>
+      </div>
+      <div class="ready__item">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3q1 4 4 6.5t3 5.5a7 7 0 0 1-14 0q0-3 3-5.5T12 3z"/><path d="M12 13q-2 2-2 4a2 2 0 0 0 4 0q0-2-2-4z"/></svg>
+        <div><b>Камин и баня</b><span>терраса с купелью</span></div>
+      </div>
+      <div class="ready__item">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V9l9-6 9 6v12"/><path d="M7 21v-8h10v8"/><path d="M7 17h10"/></svg>
+        <div><b>Гараж на 2 машины</b><span>тёплый, с зарядкой</span></div>
+      </div>
+    </div>
+  </section>
+</body>
+</html>
