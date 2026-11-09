@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>VOLTFIN — электромоторы для сапбордов</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&display=swap&subset=cyrillic" rel="stylesheet">
+<style>
+  :root {
+    --accent: #1ec8ff;
+    --accent-hover: #00b2ef;
+    --accent-2: #2f6bff;
+    --bg: #04070c;
+    --surface: #0b121c;
+    --surface-2: #111b29;
+    --text: #ffffff;
+    --text-2: rgba(255, 255, 255, .64);
+    --text-3: rgba(255, 255, 255, .44);
+    --border: rgba(255, 255, 255, .10);
+    --font: "Onest", sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html, body { width: 1920px; margin: 0; overflow-x: hidden; }
+  body { background: var(--bg); color: var(--text); font: 400 16px/24px var(--font); -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+  h1, h2, h3, p { margin: 0; }
+  svg { display: block; }
+
+  .page { position: relative; min-height: 1080px; overflow: hidden;
+    background:
+      radial-gradient(760px 560px at 1360px 420px, rgba(30, 200, 255, .20), transparent 70%),
+      radial-gradient(900px 600px at 200px 1100px, rgba(47, 107, 255, .14), transparent 70%),
+      var(--bg); }
+  /* тонкая сетка-«эхолот» */
+  .page::before { content: ""; position: absolute; inset: 0;
+    background-image: linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+    background-size: 102px 102px; background-position: 360px 0;
+    -webkit-mask-image: linear-gradient(180deg, #000 0, transparent 900px); mask-image: linear-gradient(180deg, #000 0, transparent 900px); }
+
+  .container { position: relative; width: 1200px; margin: 0 auto; }
+
+  /* Шапка */
+  .header { position: relative; z-index: 3; height: 96px; }
+  .header .container { display: flex; align-items: center; height: 100%; gap: 56px; }
+  .logo { display: flex; align-items: center; gap: 10px; font-size: 24px; line-height: 32px; font-weight: 800; letter-spacing: .04em; }
+  .logo__mark { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 10px; background: var(--accent); color: var(--bg); }
+  .menu { display: flex; gap: 32px; white-space: nowrap; font-size: 16px; line-height: 24px; color: var(--text-2); }
+  .menu a:first-child { color: var(--text); }
+  .header__right { display: flex; align-items: center; gap: 24px; margin-left: auto; }
+  .phone { font-weight: 600; white-space: nowrap; }
+  .tg { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 12px; border: 1px solid var(--border); color: var(--accent); }
+
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 12px; border-radius: 12px; font: 600 16px/24px var(--font); white-space: nowrap; }
+  .btn--m { height: 48px; padding: 0 24px; }
+  .btn--l { height: 64px; padding: 0 32px; font-size: 18px; }
+  .btn--primary { background: var(--accent); color: var(--bg); box-shadow: 0 16px 40px -12px rgba(30, 200, 255, .6); }
+  .btn--ghost { border: 1px solid rgba(30, 200, 255, .5); color: var(--text); }
+
+  /* Первый экран */
+  .hero { position: relative; z-index: 2; height: 984px; }
+  .hero__text { position: absolute; left: 0; top: 64px; width: 700px; }
+  h1 { font-size: 64px; line-height: 72px; font-weight: 800; letter-spacing: -.02em; }
+  h1 em { font-style: normal; color: var(--accent); }
+  .lead { width: 588px; margin-top: 28px; font-size: 20px; line-height: 32px; color: var(--text-2); }
+  .lead b { color: var(--text); font-weight: 500; }
+
+  .cta { display: flex; align-items: center; gap: 32px; margin-top: 40px; }
+  .price { display: flex; flex-direction: column; }
+  .price__label { font-size: 14px; line-height: 20px; color: var(--text-3); }
+  .price__value { font-size: 28px; line-height: 36px; font-weight: 700; white-space: nowrap; }
+  .micro { display: flex; align-items: center; gap: 8px; margin-top: 16px; font-size: 14px; line-height: 20px; color: var(--text-2); }
+  .micro i { width: 8px; height: 8px; border-radius: 50%; background: #3ee08f; box-shadow: 0 0 0 4px rgba(62, 224, 143, .18); }
+
+  .video { display: inline-flex; align-items: center; gap: 16px; margin-top: 40px; }
+  .video__play { display: grid; place-items: center; width: 56px; height: 56px; border-radius: 50%; border: 1px solid rgba(30, 200, 255, .5); color: var(--accent); }
+  .video__t { font-weight: 600; }
+  .video__s { font-size: 14px; line-height: 20px; color: var(--text-3); }
+
+  /* Фото */
+  .photo { position: absolute; left: 740px; top: 16px; width: 660px; height: 780px; border-radius: 40px; overflow: hidden;
+    box-shadow: 0 40px 120px -40px rgba(30, 200, 255, .45); }
+  .photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 62%; filter: saturate(1.1) contrast(1.05); }
+  .photo::after { content: ""; position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(4,7,12,.0) 40%, rgba(4,7,12,.75) 100%), linear-gradient(90deg, rgba(4,7,12,.35), transparent 40%); }
+
+  .chip { position: absolute; z-index: 2; display: flex; align-items: center; gap: 12px; padding: 12px 20px 12px 12px; border-radius: 20px;
+    background: rgba(8, 14, 22, .72); border: 1px solid rgba(255,255,255,.14); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+  .chip__icon { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 12px; background: rgba(30, 200, 255, .16); color: var(--accent); }
+  .chip__v { font-size: 20px; line-height: 28px; font-weight: 700; white-space: nowrap; }
+  .chip__s { font-size: 13px; line-height: 16px; color: var(--text-2); white-space: nowrap; }
+  .chip--speed { left: 1196px; top: 120px; }
+  .chip--fin { left: 1196px; top: 400px; }
+
+  /* Линейка комплектов */
+  .kits { position: absolute; left: 660px; top: 496px; z-index: 2; width: 440px; padding: 24px; border-radius: 24px;
+    background: rgba(11, 18, 28, .86); border: 1px solid rgba(255,255,255,.12); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 24px 60px -20px rgba(0,0,0,.7); }
+  .kits__title { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px; font-weight: 600; }
+  .kits__title span { font-size: 13px; line-height: 20px; color: var(--text-3); font-weight: 400; }
+  .kit { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 4px 16px; padding: 12px 16px; border-radius: 16px; border: 1px solid transparent; }
+  .kit + .kit { margin-top: 4px; }
+  .kit__name { display: flex; align-items: center; gap: 8px; font-weight: 600; }
+  .kit__spec { grid-column: 1; font-size: 13px; line-height: 20px; color: var(--text-2); }
+  .kit__price { grid-row: 1 / span 2; grid-column: 2; font-size: 18px; line-height: 24px; font-weight: 700; white-space: nowrap; }
+  .kit--hit { background: rgba(30, 200, 255, .10); border-color: rgba(30, 200, 255, .55); }
+  .badge { padding: 2px 8px; border-radius: 10px; background: var(--accent); color: var(--bg); font-size: 11px; line-height: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; }
+
+  /* Цифры */
+  .stats { position: absolute; left: 0; top: 848px; width: 1200px; height: 112px; display: grid; grid-template-columns: repeat(4, 1fr);
+    border-radius: 24px; background: var(--surface); border: 1px solid var(--border); }
+  .stat { display: flex; align-items: center; gap: 16px; padding: 0 28px; }
+  .stat + .stat { border-left: 1px solid var(--border); }
+  .stat__v { font-size: 32px; line-height: 40px; font-weight: 700; color: var(--accent); white-space: nowrap; }
+  .stat__s { font-size: 14px; line-height: 20px; color: var(--text-2); white-space: nowrap; }
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="header">
+    <div class="container">
+      <a class="logo" href="#">
+        <span class="logo__mark"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></span>
+        VOLTFIN
+      </a>
+      <nav class="menu">
+        <a href="#">Комплекты</a><a href="#">Установка</a><a href="#">Тесты на воде</a><a href="#">Доставка</a><a href="#">Вопросы</a>
+      </nav>
+      <div class="header__right">
+        <a class="phone" href="#">+7 900 000-00-00</a>
+        <a class="tg" href="#" aria-label="Telegram"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="m22 3-20 8 7 2 2 7 4-5 5 4z"/><path d="m9 13 13-10"/></svg></a>
+        <a class="btn btn--m btn--ghost" href="#">Заказать</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <div class="hero__text">
+        <h1 data-note="1">Электромотор<br>для сапборда:<br><em>25&nbsp;км/ч</em> и до 3 часов<br>без вёсел</h1>
+        <p class="lead" data-note="2">Ставится в штатный плавник <b>US Box или Slide-in за 10 минут</b> — доска остаётся надувной и помещается в багажник. Мотор, батарея IP67 и пульт — в комплекте.</p>
+        <div class="cta">
+          <a class="btn btn--l btn--primary" href="#">Подобрать комплект
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <div class="price" data-note="3">
+            <span class="price__label">Готовый комплект</span>
+            <span class="price__value">от 119 000 ₽</span>
+          </div>
+        </div>
+        <p class="micro"><i></i>Подскажем под вашу доску и вес в Telegram за 15 минут</p>
+        <a class="video" href="#">
+          <span class="video__play"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>
+          <span><span class="video__t">Тест на воде: разгон и встречный ветер</span><br><span class="video__s">Видео, 2:40</span></span>
+        </a>
+      </div>
+
+      <div class="photo"><img src="assets/hero.jpg" alt="Сапборд на закатной воде"></div>
+
+      <div class="chip chip--speed">
+        <span class="chip__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 14l4-4"/><path d="M3.3 19a10 10 0 1 1 17.4 0"/></svg></span>
+        <span><span class="chip__v">25 км/ч</span><br><span class="chip__s">максимальная скорость</span></span>
+      </div>
+      <div class="chip chip--fin">
+        <span class="chip__icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="3" width="12" height="18" rx="3"/><path d="M10 7h4M12 17v.01"/></svg></span>
+        <span><span class="chip__v">Пульт с дисплеем</span><br><span class="chip__s">скорость и заряд на руке</span></span>
+      </div>
+
+      <div class="kits" data-note="4">
+        <div class="kits__title">Комплекты <span>отличаются запасом хода</span></div>
+        <div class="kit">
+          <span class="kit__name">Start</span>
+          <span class="kit__spec">6 кВт · 16 А·ч · до 2 ч прогулки</span>
+          <span class="kit__price">119 000 ₽</span>
+        </div>
+        <div class="kit kit--hit">
+          <span class="kit__name">Classic <span class="badge">Чаще берут</span></span>
+          <span class="kit__spec">6 кВт · 40 А·ч · до 3 ч прогулки</span>
+          <span class="kit__price">149 000 ₽</span>
+        </div>
+        <div class="kit">
+          <span class="kit__name">Power</span>
+          <span class="kit__spec">8–20 кВт · до 35 км/ч · под задачу</span>
+          <span class="kit__price">по запросу</span>
+        </div>
+      </div>
+
+      <div class="stats" data-note="5">
+        <div class="stat"><span class="stat__v">1–3 дня</span><span class="stat__s">отправка СДЭК<br>по России</span></div>
+        <div class="stat"><span class="stat__v">6 мес.</span><span class="stat__s">гарантия<br>на весь комплект</span></div>
+        <div class="stat"><span class="stat__v">IP67</span><span class="stat__s">батарея и пульт<br>не боятся воды</span></div>
+        <div class="stat"><span class="stat__v">2 300+</span><span class="stat__s">владельцев в чате<br>поддержки</span></div>
+      </div>
+    </div>
+  </section>
+</div>
+</body>
+</html>
