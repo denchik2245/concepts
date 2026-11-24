@@ -9,13 +9,15 @@
 <style>
   :root {
     --accent: #2b8a80;
-    --accent-hover: #237268;
+    --accent-light: #8fd3c9;
     --accent-soft: #e2f0ee;
-    --bg: #f3f5f4;
-    --surface: #ffffff;
+    --bg: #ffffff;
+    --surface: #f3f5f4;
     --dark: #13202e;
     --text: #13202e;
     --text-2: #5a6672;
+    --on-dark: #ffffff;
+    --on-dark-2: rgba(255, 255, 255, .76);
     --border: #e1e6e4;
     --font: "Onest", sans-serif;
     --hand: "Caveat", cursive;
@@ -27,124 +29,107 @@
   h1, h2, h3, p { margin: 0; }
   .container { position: relative; width: 1200px; margin: 0 auto; }
 
-  /* Шапка */
-  .header { height: 96px; }
+  /* Фото на весь экран */
+  .hero { position: relative; height: 1080px; overflow: hidden; background: var(--dark); color: var(--on-dark); }
+  .hero__photo { position: absolute; left: 560px; top: 0; width: 920px; height: 940px; background: url(assets/portrait.jpg) center 6% / cover no-repeat; }
+  .hero__shade { position: absolute; left: 0; top: 0; width: 1920px; height: 940px;
+    background:
+      linear-gradient(90deg, #13202e 0, #13202e 560px, rgba(19,32,46,.45) 820px, rgba(19,32,46,.2) 1100px, rgba(19,32,46,.35) 1300px, rgba(19,32,46,.85) 1420px, #13202e 1480px),
+      linear-gradient(0deg, rgba(19,32,46,.85) 0, rgba(19,32,46,0) 360px); }
+
+  /* Шапка поверх фото */
+  .header { position: relative; height: 88px; }
   .header .container { display: flex; align-items: center; height: 100%; gap: 56px; }
   .logo { display: flex; align-items: center; gap: 10px; font-size: 22px; line-height: 32px; font-weight: 600; letter-spacing: -.01em; }
-  .logo svg { color: var(--accent); }
-  .logo span { color: var(--accent); }
-  .menu { display: flex; gap: 32px; font-size: 16px; line-height: 24px; color: var(--text-2); }
-  .header__right { display: flex; align-items: center; gap: 24px; margin-left: auto; }
-  .tg { display: flex; align-items: center; gap: 8px; font-weight: 500; }
-  .tg svg { color: var(--accent); }
+  .logo svg, .logo .lw span { color: var(--accent-light); }
+  .menu { display: flex; gap: 32px; font-size: 15px; line-height: 24px; color: var(--on-dark-2); }
+  .header__right { display: flex; align-items: center; gap: 8px; margin-left: auto; font-size: 15px; line-height: 24px; }
+  .header__right svg { color: var(--accent-light); }
 
-  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; border-radius: 12px; font: 500 16px/24px var(--font); white-space: nowrap; }
-  .btn--m { height: 48px; padding: 0 24px; border: 1.5px solid var(--dark); }
-  .btn--l { height: 64px; padding: 0 32px; font-size: 18px; }
-  .btn--primary { background: var(--accent); color: #fff; box-shadow: 0 12px 32px rgba(43, 138, 128, .28); }
+  .lead { position: absolute; left: 912px; top: 168px; width: 288px; font-size: 18px; line-height: 28px; color: var(--on-dark); }
 
-  /* Первый экран */
-  .hero { position: relative; height: 984px; }
-  .hero__text { position: absolute; left: 0; top: 72px; width: 640px; }
-  h1 { font-size: 64px; line-height: 72px; font-weight: 600; letter-spacing: -.025em; }
-  h1 .hand { display: block; margin-top: 4px; font: 600 80px/80px var(--hand); color: var(--accent); letter-spacing: 0; }
-  .lead { margin-top: 28px; width: 560px; font-size: 20px; line-height: 32px; color: var(--text-2); }
+  .offer { position: absolute; left: 0; top: 440px; width: 640px; }
+  h1 { font-size: 64px; line-height: 72px; font-weight: 500; letter-spacing: -.03em; }
+  h1 .hand { display: block; margin-top: 8px; font: 600 88px/88px var(--hand); color: var(--accent-light); letter-spacing: 0; }
 
-  .actions { display: flex; align-items: center; gap: 32px; margin-top: 48px; }
-  .price { display: flex; flex-direction: column; }
+  .actions { position: absolute; right: 0; top: 616px; display: flex; flex-direction: column; align-items: flex-end; gap: 16px; }
+  .actions__row { display: flex; align-items: center; gap: 12px; }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; height: 64px; padding: 0 32px; border-radius: 32px; font: 500 18px/24px var(--font); white-space: nowrap; }
+  .btn--primary { background: var(--accent); color: #fff; }
+  .price { display: flex; align-items: baseline; gap: 8px; }
   .price b { font-size: 28px; line-height: 36px; font-weight: 600; }
-  .price small { font-size: 14px; line-height: 20px; color: var(--text-2); }
-  .micro { display: flex; align-items: center; gap: 10px; margin-top: 20px; font-size: 15px; line-height: 24px; color: var(--text-2); }
-  .micro svg { flex: none; color: var(--accent); }
+  .price small { font-size: 14px; line-height: 20px; color: var(--on-dark-2); }
+  .micro { font-size: 14px; line-height: 20px; color: var(--on-dark-2); }
 
-  /* Фото */
-  .photo-bg { position: absolute; left: 732px; top: 40px; width: 560px; height: 760px; border-radius: 40px; background: var(--accent-soft); transform: rotate(4deg); }
-  .photo { position: absolute; left: 720px; top: 32px; width: 520px; height: 760px; border-radius: 32px; overflow: hidden; background: #dfe5e3 url(assets/portrait.jpg) center 22% / cover no-repeat; }
-  .photo-tag { position: absolute; left: 744px; top: 56px; padding: 8px 14px; border-radius: 10px; background: rgba(19, 32, 46, .72); color: #fff; font-size: 14px; line-height: 20px; }
+  .photo-tag { position: absolute; left: 912px; top: 24px; white-space: nowrap; padding: 6px 12px; border-radius: 8px; background: rgba(0,0,0,.4); color: var(--on-dark-2); font-size: 13px; line-height: 20px; }
 
-  .card { position: absolute; background: var(--surface); border-radius: 20px; box-shadow: 0 20px 48px rgba(19, 32, 46, .12); }
-  .bubble { left: 664px; top: 520px; width: 312px; padding: 20px 24px; }
-  .bubble__q { font-size: 17px; line-height: 24px; font-weight: 500; }
-  .bubble__q::before { content: "Interviewer"; display: block; margin-bottom: 6px; font-size: 12px; line-height: 16px; letter-spacing: .06em; text-transform: uppercase; color: var(--accent); }
-  .bubble__a { margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--border); font-size: 14px; line-height: 20px; color: var(--text-2); }
-
-  .format { right: 0; top: 720px; width: 268px; padding: 20px 24px; }
-  .format__row { display: flex; gap: 12px; align-items: flex-start; }
-  .format__row + .format__row { margin-top: 14px; }
-  .ico { flex: none; display: grid; place-items: center; width: 36px; height: 36px; border-radius: 10px; background: var(--accent-soft); color: var(--accent); }
-  .format b { display: block; font-size: 15px; line-height: 20px; font-weight: 600; }
-  .format span { font-size: 13px; line-height: 18px; color: var(--text-2); }
-
-  /* Цифры доверия */
-  .stats { position: absolute; left: 0; top: 856px; display: grid; grid-template-columns: repeat(4, 1fr); width: 1200px; height: 128px; padding: 0 8px; border-radius: 24px; background: var(--surface); box-shadow: 0 8px 32px rgba(19, 32, 46, .06); }
-  .stat { display: flex; flex-direction: column; justify-content: center; padding: 0 32px; }
-  .stat + .stat { border-left: 1px solid var(--border); }
-  .stat b { font-size: 32px; line-height: 40px; font-weight: 600; letter-spacing: -.02em; }
-  .stat span { margin-top: 4px; font-size: 15px; line-height: 20px; color: var(--text-2); }
+  /* Белая панель снизу */
+  .panel { position: absolute; left: 0; top: 900px; width: 1920px; height: 180px; border-radius: 32px 32px 0 0; background: var(--bg); }
+  .cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; padding-top: 32px; }
+  .card { display: flex; align-items: center; gap: 20px; height: 104px; padding: 0 24px; border-radius: 20px; background: var(--surface); }
+  .ico { flex: none; display: grid; place-items: center; width: 48px; height: 48px; border-radius: 14px; background: var(--accent-soft); color: var(--accent); }
+  .card b { display: block; font-size: 20px; line-height: 28px; font-weight: 600; color: var(--text); }
+  .card span { font-size: 14px; line-height: 20px; color: var(--text-2); }
 </style>
 </head>
 <body>
-  <header class="header">
-    <div class="container">
-      <a class="logo" href="#">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M6 3h12l4 6-10 12L2 9z"/><path d="M2 9h20M12 21 8 9l4-6 4 6z"/></svg>
-        <span class="lw">Crystal <span>English</span></span>
-      </a>
-      <nav class="menu">
-        <a href="#">Как проходят занятия</a><a href="#">Программы</a><a href="#">Цены</a><a href="#">Отзывы</a>
-      </nav>
-      <div class="header__right">
-        <a class="tg" href="#">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4z"/><path d="M22 2 11 13"/></svg>
+  <section class="hero">
+    <div class="hero__photo"></div>
+    <div class="hero__shade"></div>
+
+    <header class="header">
+      <div class="container">
+        <a class="logo" href="#">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M6 3h12l4 6-10 12L2 9z"/><path d="M2 9h20M12 21 8 9l4-6 4 6z"/></svg>
+          <span class="lw">Crystal <span>English</span></span>
+        </a>
+        <nav class="menu">
+          <a href="#">Как проходят занятия</a><a href="#">Программы</a><a href="#">Цены</a><a href="#">Отзывы</a>
+        </nav>
+        <a class="header__right" href="#">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4z"/><path d="M22 2 11 13"/></svg>
           Написать в Telegram
         </a>
-        <a class="btn btn--m" href="#">Пробный урок</a>
       </div>
-    </div>
-  </header>
+    </header>
 
-  <section class="hero">
-    <div class="container" style="height:984px">
-      <div class="photo-bg"></div>
-      <div class="photo" data-note="5"></div>
-      <div class="photo-tag">Здесь будет ваше портретное фото</div>
+    <div class="container" style="height:812px">
+      <div class="photo-tag" data-note="5">Здесь будет ваше портретное фото</div>
+      <p class="lead">Занятия 1-на-1 онлайн под ваши рабочие задачи: созвоны и стендапы, собеседования в зарубежные компании, переписка и презентации</p>
 
-      <div class="hero__text">
-        <h1 data-note="1">Индивидуальный английский для IT и специалистов <span class="hand">— заговорите свободно</span></h1>
-        <p class="lead">Занятия 1-на-1 онлайн под ваши рабочие задачи: созвоны и стендапы, собеседования в зарубежные компании, переписка и презентации.</p>
-        <div class="actions">
-          <a class="btn btn--l btn--primary" href="#" data-note="2">Записаться на пробный урок
+      <div class="offer">
+        <h1 data-note="1">Индивидуальный английский для IT и специалистов <span class="hand">заговорите свободно</span></h1>
+      </div>
+
+      <div class="actions">
+        <div class="price" data-note="3"><b>от 2 500 ₽</b><small>за 60 минут</small></div>
+        <div class="actions__row">
+          <a class="btn btn--primary" href="#" data-note="2">Записаться на пробный урок
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
           </a>
-          <div class="price" data-note="3"><b>от 2 500 ₽</b><small>за урок 60 минут</small></div>
         </div>
-        <p class="micro">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m8 12 3 3 5-6"/></svg>
-          Пробный урок бесплатный: 30 минут, определим уровень и составим план
-        </p>
+        <p class="micro">Пробный урок бесплатный: 30 минут, определим уровень и составим план</p>
       </div>
+    </div>
 
-      <div class="card bubble">
-        <p class="bubble__q">Could you walk me through your last project?</p>
-        <p class="bubble__a">Отрабатываем реальные вопросы с собеседований и рабочих созвонов</p>
-      </div>
-
-      <div class="card format">
-        <div class="format__row">
-          <div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="m16 10 6-3v10l-6-3"/></svg></div>
-          <div><b>Онлайн, 1-на-1</b><span>Zoom или Google Meet</span></div>
+    <div class="panel">
+      <div class="container cards" data-note="4">
+        <div class="card">
+          <div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+          <div><b>8 лет</b><span>преподаю английский взрослым</span></div>
         </div>
-        <div class="format__row">
-          <div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
-          <div><b>Гибкое расписание</b><span>Утро, вечер, выходные</span></div>
+        <div class="card">
+          <div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="6"/><path d="M15.5 13.5 17 22l-5-3-5 3 1.5-8.5"/></svg></div>
+          <div><b>C2, CELTA</b><span>уровень и сертификат</span></div>
         </div>
-      </div>
-
-      <div class="stats" data-note="4">
-        <div class="stat"><b>8 лет</b><span>преподаю английский взрослым</span></div>
-        <div class="stat"><b>C2, CELTA</b><span>уровень и сертификат преподавателя</span></div>
-        <div class="stat"><b>140+</b><span>учеников из IT и бизнеса</span></div>
-        <div class="stat"><b>4,9 ★</b><span>средняя оценка учеников</span></div>
+        <div class="card">
+          <div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="14" rx="2"/><path d="M8 22h8M12 18v4"/></svg></div>
+          <div><b>140+</b><span>учеников из IT и бизнеса</span></div>
+        </div>
+        <div class="card">
+          <div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 2 3.1 6.3 6.9 1-5 4.9 1.2 6.8L12 17.8 5.8 21l1.2-6.8-5-4.9 6.9-1z"/></svg></div>
+          <div><b>4,9 из 5</b><span>средняя оценка учеников</span></div>
+        </div>
       </div>
     </div>
   </section>
