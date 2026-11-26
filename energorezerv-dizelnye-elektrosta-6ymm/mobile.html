@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>ЭнергоРезерв — первый экран, мобильная версия</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&display=swap&subset=cyrillic" rel="stylesheet">
+<style>
+  :root {
+    --accent: #2fb457;
+    --accent-hover: #279a4a;
+    --mint: #7be3a1;
+    --bg: #f2f3f1;
+    --surface: #ffffff;
+    --dark: #0b0d0c;
+    --text: #0b0d0c;
+    --text-2: #5c625e;
+    --on-dark: #ffffff;
+    --on-dark-2: rgba(255, 255, 255, .64);
+    --on-dark-3: rgba(255, 255, 255, .16);
+    --border: #dfe2de;
+    --font: "Inter Tight", sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html, body { width: 375px; margin: 0; overflow-x: hidden; }
+  body { background: var(--bg); color: var(--text); font: 400 16px/24px var(--font); -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+  h1, h2, h3, p { margin: 0; }
+  svg { display: block; }
+
+  .header { display: flex; align-items: center; height: 64px; padding: 0 16px; }
+  .logo { display: flex; align-items: center; gap: 10px; font-size: 18px; line-height: 24px; font-weight: 600; letter-spacing: -.01em; }
+  .logo__mark { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 10px; background: var(--dark); color: var(--mint); }
+  .header__right { display: flex; align-items: center; gap: 8px; margin-left: auto; }
+  .icon-btn { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 12px; border: 1px solid var(--border); background: var(--surface); }
+  .icon-btn--dark { background: var(--dark); border-color: var(--dark); color: #fff; }
+
+  .hero { margin: 0 8px; border-radius: 28px; background: var(--dark); color: var(--on-dark); overflow: hidden; }
+  .hero__text { padding: 32px 16px 32px; }
+  h1 { font-size: 36px; line-height: 40px; font-weight: 600; letter-spacing: -.02em; }
+  h1 em { font-style: normal; color: var(--mint); }
+  .lead { margin-top: 16px; font-size: 16px; line-height: 24px; color: var(--on-dark-2); }
+
+  .power { margin-top: 24px; }
+  .power__label { font-size: 13px; line-height: 20px; color: var(--on-dark-2); }
+  .chips { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 8px; }
+  .chip { display: flex; align-items: center; justify-content: center; height: 44px; border-radius: 22px; border: 1px solid var(--on-dark-3); background: rgba(255,255,255,.04); font-size: 15px; font-weight: 500; white-space: nowrap; }
+
+  .btn { display: flex; align-items: center; justify-content: space-between; width: 100%; height: 56px; margin-top: 24px; padding: 0 6px 0 20px; border-radius: 12px; background: #fff; color: var(--dark); font: 600 16px/24px var(--font); }
+  .btn__icon { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 9px; background: var(--accent); color: #fff; }
+  .micro { display: flex; align-items: center; justify-content: center; gap: 6px; margin-top: 12px; font-size: 13px; line-height: 20px; color: var(--on-dark-2); }
+  .micro svg { color: var(--mint); }
+  .calc-link { display: flex; align-items: center; justify-content: center; gap: 10px; margin-top: 16px; font-weight: 500; }
+  .calc-link svg { color: var(--mint); }
+  .calc-link span { border-bottom: 1px solid var(--on-dark-3); }
+
+  .photo { height: 260px; background: url(assets/genset-m.jpg) 30% 60% / cover no-repeat; }
+
+  .steps { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 8px 8px 24px; }
+  .step { padding: 16px; border-radius: 20px; background: var(--surface); }
+  .step__top { display: flex; justify-content: space-between; align-items: center; }
+  .pix { display: flex; gap: 3px; }
+  .pix i { width: 8px; height: 8px; background: #e3e6e2; }
+  .pix i.on { background: var(--accent); }
+  .step__num { font-size: 12px; line-height: 16px; color: var(--text-2); }
+  .step h3 { margin-top: 16px; font-size: 16px; line-height: 24px; font-weight: 600; }
+  .step p { margin-top: 4px; font-size: 13px; line-height: 20px; color: var(--text-2); }
+</style>
+</head>
+<body>
+  <header class="header">
+    <a class="logo" href="#">
+      <span class="logo__mark">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z"/></svg>
+      </span>
+      ЭнергоРезерв
+    </a>
+    <div class="header__right">
+      <a class="icon-btn" href="#" aria-label="Позвонить">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2z"/></svg>
+      </a>
+      <a class="icon-btn icon-btn--dark" href="#" aria-label="Меню">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero__text">
+      <h1>Дизельные электростанции <em>от производителя</em></h1>
+      <p class="lead">Резервное и автономное электроснабжение под ключ: проектируем, собираем, поставляем и обслуживаем.</p>
+
+      <div class="power">
+        <p class="power__label">Подбор по мощности</p>
+        <div class="chips">
+          <a class="chip" href="#">до 50 кВт</a><a class="chip" href="#">50–200 кВт</a><a class="chip" href="#">200–630 кВт</a><a class="chip" href="#">от 630 кВт</a>
+        </div>
+      </div>
+
+      <a class="btn" href="#">Подобрать электростанцию
+        <span class="btn__icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </a>
+      <p class="micro">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+        КП с ценой за 1 рабочий день
+      </p>
+      <a class="calc-link" href="#">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 11h.01M12 11h.01M16 11h.01M8 15h.01M12 15h.01M16 15h.01M8 19h.01M12 19h.01M16 19h.01"/></svg>
+        <span>Рассчитать мощность объекта</span>
+      </a>
+    </div>
+    <div class="photo"></div>
+  </section>
+
+  <div class="steps">
+    <div class="step"><div class="step__top"><div class="pix"><i class="on"></i><i></i><i></i><i></i></div><span class="step__num">01</span></div><h3>Проектирование</h3><p>Расчёт нагрузок, проект и согласования</p></div>
+    <div class="step"><div class="step__top"><div class="pix"><i></i><i class="on"></i><i></i><i></i></div><span class="step__num">02</span></div><h3>Производство</h3><p>Сборка и заводские испытания</p></div>
+    <div class="step"><div class="step__top"><div class="pix"><i></i><i></i><i class="on"></i><i></i></div><span class="step__num">03</span></div><h3>Поставка и монтаж</h3><p>Доставка, монтаж и пусконаладка</p></div>
+    <div class="step"><div class="step__top"><div class="pix"><i></i><i></i><i></i><i class="on"></i></div><span class="step__num">04</span></div><h3>Сервис 24/7</h3><p>ТО и выезд аварийной бригады</p></div>
+  </div>
+</body>
+</html>
