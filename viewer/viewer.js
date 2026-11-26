@@ -55,42 +55,23 @@
     if (bar.scrollWidth > bar.clientWidth + 1) bar.classList.add('bar--compact');
   }
 
-  // Живая вёрстка в iframe создаётся один раз; на телефоне вместо неё — готовые PNG
-  let deskIframe, phoneIframe, deskImg, phoneImg;
-  function iframe(src, cls) {
-    const f = document.createElement('iframe');
-    f.src = src; f.title = data.title || ''; f.setAttribute('tabindex', '-1');
-    if (cls) f.className = cls;
-    return f;
-  }
+  // Экраны показываем готовыми картинками из build.mjs: так шрифты и фото всегда как на макете,
+  // и ничего не догружается у заказчика. Мобильная версия листается внутри телефона.
+  let deskImg, phoneImg;
   function img(src) {
     const i = document.createElement('img');
     i.src = src; i.alt = data.title || ''; i.decoding = 'async';
     return i;
   }
+  function ensureImages() {
+    if (deskImg) return;
+    deskImg = img(desk.jpg || desk.png);
+    deskView.appendChild(deskImg);
+    if (mob) { phoneImg = img(mob.jpg || mob.png); phoneView.appendChild(phoneImg); }
+  }
 
   function layoutWide() {
-    if (!deskIframe) {
-      deskIframe = iframe(desk.file);
-      deskIframe.scrolling = 'no';
-      deskView.appendChild(deskIframe);
-      if (mob) {
-        phoneIframe = iframe(mob.file);
-        // Прячем полосу прокрутки внутри телефона — как на настоящем экране
-        phoneIframe.addEventListener('load', () => {
-          try {
-            const s = phoneIframe.contentDocument.createElement('style');
-            s.textContent = 'html{scrollbar-width:none}html::-webkit-scrollbar{display:none}';
-            phoneIframe.contentDocument.head.appendChild(s);
-          } catch {}
-        });
-        phoneView.appendChild(phoneIframe);
-      }
-    }
-    for (const el of [deskImg, phoneImg]) if (el) el.hidden = true;
-    deskIframe.hidden = false;
-    if (phoneIframe) phoneIframe.hidden = false;
-
+    ensureImages();
     // Высота экрана десктопа Hs такая, чтобы окно и телефон стояли рядом одной высоты и целиком помещались
     const st = getComputedStyle(stage);
     const availW = stage.clientWidth - parseFloat(st.paddingLeft) - parseFloat(st.paddingRight) - 4;
@@ -105,26 +86,16 @@
     const s = Hs / dH;
     deskFrame.style.width = Math.floor(DW * s) + 2 + 'px';
     deskView.style.height = Math.round(Hs) + 'px';
-    deskIframe.style.height = dH + 'px';
-    deskIframe.style.transform = 'scale(' + (deskView.clientWidth / DW) + ')';
 
     if (mob) {
       const sp = (Hs + CHROME - 2 * BEZEL) / MH;
       phoneView.style.width = Math.round(MW * sp) + 'px';
       phoneView.style.height = Math.round(MH * sp) + 'px';
-      phoneIframe.style.transform = 'scale(' + (phoneView.clientWidth / MW) + ')';
     }
   }
 
   function layoutNarrow() {
-    if (!deskImg) {
-      deskImg = img(desk.png);
-      deskView.appendChild(deskImg);
-      if (mob) { phoneImg = img(mob.png); phoneView.appendChild(phoneImg); }
-    }
-    for (const el of [deskIframe, phoneIframe]) if (el) el.hidden = true;
-    deskImg.hidden = false;
-    if (phoneImg) phoneImg.hidden = false;
+    ensureImages();
     deskFrame.style.width = '';
     deskView.style.height = '';
     if (mob) {
