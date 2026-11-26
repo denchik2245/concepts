@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>Новая крыша — первый экран</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&display=swap&subset=cyrillic" rel="stylesheet">
+<style>
+  :root {
+    --accent: #f2742b;
+    --accent-hover: #dc6420;
+    --blue: #1f4fd1;
+    --blue-soft: #e4ebfb;
+    --bg: #eef2f7;
+    --surface: #ffffff;
+    --text: #0f1e3c;
+    --text-2: #56637a;
+    --border: #d5dce8;
+    --font: "Jost", sans-serif;
+  }
+  * { box-sizing: border-box; }
+  html, body { width: 1920px; margin: 0; overflow-x: hidden; }
+  body { background: var(--bg); color: var(--text); font: 400 16px/24px var(--font); -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+  h1, h2, h3, p { margin: 0; }
+  .container { position: relative; width: 1200px; margin: 0 auto; }
+
+  .header { position: relative; z-index: 3; height: 96px; }
+  .header .container { display: flex; align-items: center; height: 100%; gap: 48px; }
+  .logo { display: flex; align-items: center; gap: 10px; font-size: 22px; line-height: 28px; font-weight: 600; letter-spacing: .02em; white-space: nowrap; }
+  .logo svg { color: var(--blue); }
+  .menu { display: flex; gap: 32px; font-size: 16px; line-height: 24px; color: var(--text-2); white-space: nowrap; }
+  .header__right { display: flex; align-items: center; gap: 24px; margin-left: auto; white-space: nowrap; }
+  .phone b { display: block; font-size: 18px; line-height: 24px; font-weight: 600; }
+  .phone span { display: block; font-size: 13px; line-height: 16px; color: var(--text-2); }
+
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 12px; border-radius: 32px; font: 500 16px/24px var(--font); white-space: nowrap; }
+  .btn--m { height: 48px; padding: 0 24px; }
+  .btn--l { height: 64px; padding: 0 36px; font-size: 18px; }
+  .btn--primary { background: var(--accent); color: #fff; box-shadow: 0 16px 32px rgba(242, 116, 43, .28); }
+  .btn--outline { border: 1px solid var(--text); }
+
+  .hero { position: relative; height: 984px; }
+  .hero__text { position: relative; z-index: 2; padding-top: 64px; }
+  h1 { font-size: 64px; line-height: 76px; font-weight: 400; text-transform: uppercase; letter-spacing: .01em; }
+  h1 .l1 { display: block; color: var(--blue); }
+  h1 .l2 { display: block; padding-left: 96px; }
+  .row { display: flex; justify-content: space-between; margin-top: 40px; padding-left: 102px; }
+  .lead { width: 588px; font-size: 20px; line-height: 32px; color: var(--text-2); }
+  .actions { display: flex; align-items: center; gap: 32px; margin-top: 32px; }
+  .price b { display: block; font-size: 24px; line-height: 32px; font-weight: 500; }
+  .price span { display: block; font-size: 14px; line-height: 20px; color: var(--text-2); }
+  .micro { margin-top: 16px; font-size: 14px; line-height: 20px; color: var(--text-2); }
+
+  .perks { width: 384px; margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--border); }
+  .perks li { display: flex; gap: 16px; align-items: flex-start; padding: 16px 0; border-bottom: 1px solid var(--border); font-size: 16px; line-height: 24px; }
+  .perks svg { flex: none; margin-top: 2px; color: var(--blue); }
+  .perks b { font-weight: 500; }
+  .perks span { color: var(--text-2); }
+
+  /* Фото крыш снизу, верх растворяется в фоне */
+  .photo { position: absolute; left: 0; right: 0; bottom: 0; height: 480px;
+    background: url(assets/hero.jpg) center -300px / 1920px auto no-repeat; }
+  .photo::before { content: ""; position: absolute; inset: 0;
+    background: linear-gradient(180deg, var(--bg) 0%, rgba(238, 242, 247, .86) 18%, rgba(238, 242, 247, 0) 52%); }
+
+  .credit { position: absolute; z-index: 2; right: 0; bottom: 48px; display: flex; gap: 20px; align-items: center; width: 486px; padding: 24px 28px; border-radius: 24px;
+    background: #fff; box-shadow: 0 24px 48px rgba(15, 30, 60, .16); }
+  .credit__num { flex: none; display: grid; place-items: center; width: 96px; height: 96px; border-radius: 48px; background: var(--blue); color: #fff; text-align: center; }
+  .credit__num b { display: block; font-size: 36px; line-height: 36px; font-weight: 500; }
+  .credit__num span { display: block; font-size: 12px; line-height: 16px; }
+  .credit h3 { font-size: 20px; line-height: 28px; font-weight: 500; }
+  .credit p { margin-top: 4px; font-size: 15px; line-height: 20px; color: var(--text-2); }
+  .credit a { display: inline-flex; gap: 8px; align-items: center; margin-top: 8px; font-size: 15px; line-height: 20px; font-weight: 600; color: var(--blue); }
+</style>
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <a class="logo" href="#">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12 12 4l10 8"/><path d="M5 10v9h14v-9"/></svg>
+        НОВАЯ КРЫША
+      </a>
+      <nav class="menu">
+        <a href="#">Что входит</a><a href="#">Металлочерепица</a><a href="#">Наши работы</a><a href="#">Кредит</a><a href="#">Контакты</a>
+      </nav>
+      <div class="header__right">
+        <a class="phone" href="#"><b>+375 29 000-00-00</b><span>ежедневно 8:00–20:00</span></a>
+        <a class="btn btn--m btn--outline" href="#">Консультация</a>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container hero__text">
+      <h1 data-note="1"><span class="l1">Кровля из металлочерепицы</span><span class="l2">— под ключ по всей Беларуси</span></h1>
+      <div class="row">
+        <div>
+          <p class="lead">Все необходимые материалы и профессиональный монтаж — от замера до готовой кровли. Всё в одном месте.</p>
+          <div class="actions">
+            <a class="btn btn--l btn--primary" href="#" data-note="2">Рассчитать стоимость кровли
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+            <div class="price"><b>от 72 BYN/м²</b><span>материалы и монтаж</span></div>
+          </div>
+          <p class="micro">Замерщик приедет в любую область — перезвоним за 15 минут</p>
+        </div>
+        <ul class="perks" data-note="3">
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><div><b>Один договор</b> <span>— материалы и монтаж</span></div></li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><div><b>Подбор под дом</b> <span>— профиль и цвет</span></div></li>
+          <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><div><b>По ГОСТ и СНиП</b> <span>— до готовой крыши</span></div></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="photo" data-note="5"></div>
+
+    <div class="container" style="position:absolute; left:0; right:0; bottom:0; height:0;">
+      <div class="credit" data-note="4">
+        <div class="credit__num"><div><b>84</b><span>месяца</span></div></div>
+        <div>
+          <h3>Кровля в кредит до 7 лет</h3>
+          <p>Оформим на замере — без справок и похода в банк</p>
+          <a href="#">Узнать условия кредита
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</body>
+</html>
